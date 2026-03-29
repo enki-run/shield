@@ -1,0 +1,100 @@
+{
+  "_comment": "Shield PII Detection Rules — edit this file to tune detection without code changes.",
+  "_version": "1.0.0",
+  "_docs": "Each rule creates a Presidio PatternRecognizer. 'context' words boost confidence when found nearby.",
+
+  "rules": [
+    {
+      "name": "DE_StreetWithNumber",
+      "entity_type": "LOCATION",
+      "description": "German street + house number (e.g. 'Berliner Str. 12a', 'Hauptstraße 5')",
+      "patterns": [
+        {
+          "name": "street_suffix_number",
+          "regex": "\\b(?:[\\w\\u00C0-\\u024F]+[- ])*[\\w\\u00C0-\\u024F]*(?:stra[sß]e|strasse|str\\.|gasse|weg|allee|platz|ring|damm|ufer|chaussee|heide|hof|berg|tal|feld|grund|au|aue)\\.? \\d{1,4} ?[a-zA-Z]?\\b",
+          "score": 0.9
+        }
+      ],
+      "context": ["adresse", "anschrift", "wohnhaft", "wohnt"]
+    },
+    {
+      "name": "DE_StreetName",
+      "entity_type": "LOCATION",
+      "description": "German street name without number (e.g. 'Berliner Straße', 'Hauptstr.')",
+      "patterns": [
+        {
+          "name": "street_suffix_only",
+          "regex": "\\b(?:[\\w\\u00C0-\\u024F]+[-\\s])*[\\w\\u00C0-\\u024F]*(?:stra[sß]e|strasse|str\\.|gasse|weg|allee|platz|ring|damm|ufer|chaussee|heide|hof|berg|tal|feld|grund|au|aue)\\.?\\b",
+          "score": 0.7
+        }
+      ],
+      "context": ["adresse", "anschrift", "wohnhaft", "wohnt", "straße"]
+    },
+    {
+      "name": "DE_PLZCity",
+      "entity_type": "LOCATION",
+      "description": "German postal code + city (e.g. '10115 Berlin')",
+      "patterns": [
+        {
+          "name": "plz_city",
+          "regex": "\\b\\d{5}\\s+[A-ZÄÖÜ][\\w\\u00C0-\\u024F]+\\b",
+          "score": 0.85
+        }
+      ],
+      "context": ["ort", "stadt", "plz", "postleitzahl"]
+    },
+    {
+      "name": "DE_PLZ",
+      "entity_type": "LOCATION",
+      "description": "Standalone German postal code (5 digits, needs context)",
+      "patterns": [
+        {
+          "name": "plz_standalone",
+          "regex": "\\b\\d{5}\\b",
+          "score": 0.4
+        }
+      ],
+      "context": ["plz", "postleitzahl", "ort", "stadt", "adresse", "anschrift"]
+    },
+    {
+      "name": "DE_OrgSuffix",
+      "entity_type": "ORGANIZATION",
+      "description": "Any text ending with German legal suffix (GmbH, AG, e.V., etc.)",
+      "patterns": [
+        {
+          "name": "org_legal_suffix",
+          "regex": "[A-ZÄÖÜ][\\w\\u00C0-\\u024F]+(?: [A-ZÄÖÜa-zäöü][\\w\\u00C0-\\u024F]+){0,7} (?:GmbH|mbH|AG|e\\.? ?V\\.|KG|OHG|SE|gGmbH|UG|Ltd\\.|Inc\\.|S\\.?A\\.?|Co\\. ?KG)\\b",
+          "score": 0.85
+        }
+      ],
+      "context": ["firma", "unternehmen", "arbeitgeber", "gesellschaft", "kündigung", "arbeitsverhältnis"]
+    },
+    {
+      "name": "DE_OrgInstitution",
+      "entity_type": "ORGANIZATION",
+      "description": "German institutional names with optional prefix before keyword",
+      "patterns": [
+        {
+          "name": "org_institution_with_suffix",
+          "regex": "(?:[A-ZÄÖÜ][\\w\\u00C0-\\u024F]+ ){0,3}(?:Institut|Verein|Stiftung|Verband|Akademie|Zentrum|Amt|Behörde|Ministerium) (?:für|der|des|zu) [A-ZÄÖÜ][\\w\\u00C0-\\u024F \\-]{2,50}?(?:GmbH|mbH|AG|e\\.? ?V\\.|KG|OHG|SE|gGmbH|UG)\\b",
+          "score": 0.9
+        },
+        {
+          "name": "org_institution_no_suffix",
+          "regex": "[A-ZÄÖÜ][\\w\\u00C0-\\u024F]+(?: [A-ZÄÖÜ][\\w\\u00C0-\\u024F]+)* (?:Institut|Verein|Stiftung|Verband|Akademie|Zentrum|Amt|Behörde|Ministerium) (?:für|der|des|zu) [A-ZÄÖÜ][\\w\\u00C0-\\u024F]+(?:[ ][A-ZÄÖÜ][\\w\\u00C0-\\u024F]+)*",
+          "score": 0.75
+        }
+      ],
+      "context": ["firma", "unternehmen", "arbeitgeber"]
+    }
+  ],
+
+  "entity_dedup": {
+    "_comment": "When entities overlap, higher confidence wins. Priority breaks ties (lower = preferred).",
+    "type_priority": {
+      "LOCATION": 0,
+      "ORGANIZATION": 1,
+      "PERSON": 2
+    }
+  }
+}

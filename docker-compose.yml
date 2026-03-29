@@ -1,0 +1,22 @@
+services:
+  shield:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - SHIELD_ENVIRONMENT=development
+      - SHIELD_SECRET_KEY=dev-secret-change-me-at-least-32-chars
+      - SHIELD_DATA_DIR=/data
+      - SHIELD_DB_URL=sqlite+aiosqlite:////data/db/shield.db
+      - SHIELD_BASE_URL=http://localhost:8000
+    volumes:
+      - shield-data:/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:8000/api/v1/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 60s
+
+volumes:
+  shield-data:

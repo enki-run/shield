@@ -1,0 +1,39 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.coverage
+*.egg-info/
+dist/
+build/
+
+# Data & DB
+data/
+*.db
+
+# Secrets & Config — NEVER commit these
+.env
+.env.*
+*.toml
+!pyproject.toml
+*.secret
+*.key
+*.pem
+
+# Node
+node_modules/
+frontend/node_modules/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Docker
+.docker/
+docs/
