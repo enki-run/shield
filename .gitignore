@@ -37,3 +37,11 @@ frontend/node_modules/
 # Docker
 .docker/
 docs/
+
+# Benchmark raw data (test documents contain synthetic but realistic PII)
+benchmarks/*.docx
+benchmarks/*.xlsx
+benchmarks/*.pdf
+benchmarks/*.csv
+benchmarks/*.odt
+benchmarks/*.ods
