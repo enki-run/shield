@@ -157,17 +157,31 @@
       "Datev", "OTRS", "Sophos", "Veeam", "VMware", "Cisco",
       "Apache", "Nginx", "MySQL", "Azure", "Intune", "Wazuh",
       "Response", "Prozesse", "Compliance", "Migration",
-      "Implementierung", "Administration", "Konfiguration"
+      "Implementierung", "Administration", "Konfiguration",
+
+      "Telefon", "Personal-Nr", "Personal-Nr.", "Headcount", "Avg",
+      "Krankenquote", "Fluktuation", "Notfall-Tel", "Notfall-Tel.",
+      "Schulungstage", "Steuer-ID", "Anorganik", "Key",
+      "Laborantin", "Systemadministrator", "Abteilungsleitung",
+      "Kostenstelle", "Budgetauslastung", "Kundenzufriedenheit",
+      "Zielerreichung", "Eintrittsdatum", "Geburtsdatum",
+      "Steuerklasse", "Familienstand", "Staatsangehörigkeit",
+      "Führerschein", "Fachinformatiker", "Systemintegration",
+      "Dipl.-Kfm", "Dipl.-Kfm.",
+      "Analytik", "Mikrobiologie", "Sensorik", "Controlling",
+      "Probenvorbereitung", "Qualitätsmanagement", "Digitalisierung"
     ]
   },
 
   "entity_dedup": {
     "_comment": "When entities overlap, higher confidence wins. Priority breaks ties (lower = preferred).",
     "type_priority": {
-      "LOCATION": 0,
-      "ORGANIZATION": 1,
-      "PHONE_NUMBER": 2,
-      "PERSON": 3
+      "IBAN_CODE": 0,
+      "DE_SOCIAL_SECURITY": 1,
+      "LOCATION": 2,
+      "ORGANIZATION": 3,
+      "PHONE_NUMBER": 4,
+      "PERSON": 5
     }
   }
 }

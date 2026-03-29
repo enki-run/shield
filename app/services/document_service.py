@@ -103,6 +103,9 @@ class DocumentService:
         blocks_with_pii = 0
 
         for block in parsed.blocks:
+            # Skip detection for header rows, numeric cells, etc.
+            if block.metadata.get("skip_detection", False):
+                continue
             entities = detector.detect(block.text)
             if entities:
                 blocks_with_pii += 1
