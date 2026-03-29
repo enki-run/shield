@@ -158,10 +158,49 @@ class PiiDetector:
         ]
 
         cleaned = [_trim_entity(e, text) for e in raw]
-        filtered = [e for e in cleaned if e.text.strip().lower() not in _fp_denylist]
+        filtered = [e for e in cleaned if not _is_false_positive(e, text)]
         entities = _deduplicate_entities(filtered, _dedup_config)
         entities.sort(key=lambda e: e.start)
         return entities
+
+
+import re as _re
+
+# Pattern for IBAN prefixes that spaCy misclassifies as LOCATION
+_IBAN_PREFIX = _re.compile(r"^[A-Z]{2}\d{2}$")
+# Pattern for phone numbers that are actually IBAN fragments (no + or leading 0)
+_IBAN_FRAGMENT = _re.compile(r"^\d{4}[\s.]\d{4}[\s.]\d{2,4}$")
+
+def _is_false_positive(entity: DetectedEntity, full_text: str) -> bool:
+    """Filter out known false positives."""
+    text = entity.text.strip()
+    text_lower = text.lower()
+
+    # Denylist match
+    if text_lower in _fp_denylist:
+        return True
+
+    # IBAN prefix codes misclassified as LOCATION (DE27, GB29, etc.)
+    if entity.entity_type == "LOCATION" and _IBAN_PREFIX.match(text):
+        return True
+
+    # Phone numbers that are actually IBAN fragments (0517 8934 2610)
+    if entity.entity_type == "PHONE_NUMBER":
+        stripped = text.replace(" ", "").replace(".", "").replace("-", "")
+        # Real phones start with + or 0
+        if stripped and stripped[0] not in ("+", "0"):
+            return True
+        # Very short "phone" numbers are usually noise
+        if len(stripped) < 7:
+            return True
+        # IBAN fragments: uniform 4-digit groups (0517 8934 2610)
+        # Real DE phones: Vorwahl(3-5 digits) + number(4-8 digits)
+        if stripped[0] == "0" and not stripped.startswith("+"):
+            parts = text.strip().split()
+            if len(parts) >= 2 and all(len(p) == 4 for p in parts):
+                return True  # Uniform 4-digit blocks = IBAN fragment
+
+    return False
 
 
 _ORG_LEGAL_SUFFIXES = {"gmbh", "mbh", "ag", "kg", "ohg", "se", "ggmbh", "ug", "e.v.", "ev", "ltd", "inc"}
