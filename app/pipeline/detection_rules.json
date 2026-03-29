@@ -1,13 +1,13 @@
 {
   "_comment": "Shield PII Detection Rules — edit this file to tune detection without code changes.",
-  "_version": "1.0.0",
+  "_version": "1.1.0",
   "_docs": "Each rule creates a Presidio PatternRecognizer. 'context' words boost confidence when found nearby.",
 
   "rules": [
     {
       "name": "DE_StreetWithNumber",
       "entity_type": "LOCATION",
-      "description": "German street + house number (e.g. 'Berliner Str. 12a', 'Hauptstraße 5')",
+      "description": "German street + house number",
       "patterns": [
         {
           "name": "street_suffix_number",
@@ -20,7 +20,7 @@
     {
       "name": "DE_StreetName",
       "entity_type": "LOCATION",
-      "description": "German street name without number (e.g. 'Berliner Straße', 'Hauptstr.')",
+      "description": "German street name without number",
       "patterns": [
         {
           "name": "street_suffix_only",
@@ -33,7 +33,7 @@
     {
       "name": "DE_PLZCity",
       "entity_type": "LOCATION",
-      "description": "German postal code + city (e.g. '10115 Berlin')",
+      "description": "German postal code + city",
       "patterns": [
         {
           "name": "plz_city",
@@ -57,22 +57,79 @@
       "context": ["plz", "postleitzahl", "ort", "stadt", "adresse", "anschrift"]
     },
     {
-      "name": "DE_OrgSuffix",
-      "entity_type": "ORGANIZATION",
-      "description": "Any text ending with German legal suffix (GmbH, AG, e.V., etc.)",
+      "name": "DE_Phone",
+      "entity_type": "PHONE_NUMBER",
+      "description": "German phone numbers (+49, 0xxx)",
       "patterns": [
         {
-          "name": "org_legal_suffix",
-          "regex": "[A-ZÄÖÜ][\\w\\u00C0-\\u024F]+(?: [A-ZÄÖÜa-zäöü][\\w\\u00C0-\\u024F]+){0,7} (?:GmbH|mbH|AG|e\\.? ?V\\.|KG|OHG|SE|gGmbH|UG|Ltd\\.|Inc\\.|S\\.?A\\.?|Co\\. ?KG)\\b",
+          "name": "de_phone_intl",
+          "regex": "\\+49[\\s.-]?\\(?\\d{2,4}\\)?[\\s.-]?[\\d\\s.-]{4,12}\\d",
+          "score": 0.85
+        },
+        {
+          "name": "de_phone_local",
+          "regex": "\\b0\\d{2,4}[\\s/.-]\\d{3,8}[\\s.-]?\\d{0,5}\\b",
+          "score": 0.7
+        }
+      ],
+      "context": ["telefon", "tel", "fax", "mobil", "handy", "festnetz", "durchwahl", "rückruf"]
+    },
+    {
+      "name": "DE_SteuerID",
+      "entity_type": "DE_TAX_ID",
+      "description": "German tax identification number (Steuer-ID, 11 digits)",
+      "patterns": [
+        {
+          "name": "steuer_id_spaced",
+          "regex": "\\b\\d{2}\\s?\\d{3}\\s?\\d{3}\\s?\\d{3}\\b",
+          "score": 0.5
+        }
+      ],
+      "context": ["steuer", "steuer-id", "identifikationsnummer", "tin", "finanzamt"]
+    },
+    {
+      "name": "DE_Sozialversicherung",
+      "entity_type": "DE_SOCIAL_SECURITY",
+      "description": "German social security number (12 chars: NN DDMMYY L NNN)",
+      "patterns": [
+        {
+          "name": "sv_nr",
+          "regex": "\\b\\d{2}\\s?\\d{6}\\s?[A-Z]\\s?\\d{3}\\b",
           "score": 0.85
         }
       ],
-      "context": ["firma", "unternehmen", "arbeitgeber", "gesellschaft", "kündigung", "arbeitsverhältnis"]
+      "context": ["sozialversicherung", "sv-nr", "sozialversicherungsnr", "rentenversicherung"]
+    },
+    {
+      "name": "DE_Personalausweis",
+      "entity_type": "DE_ID_CARD",
+      "description": "German ID card number (9-10 chars alphanumeric)",
+      "patterns": [
+        {
+          "name": "perso_nr",
+          "regex": "\\b[A-Z][A-Z0-9]\\d{7}[A-Z]?\\b",
+          "score": 0.5
+        }
+      ],
+      "context": ["personalausweis", "ausweis", "ausweisn", "perso", "identit"]
+    },
+    {
+      "name": "DE_OrgSuffix",
+      "entity_type": "ORGANIZATION",
+      "description": "Text ending with German legal suffix (GmbH, AG, etc.)",
+      "patterns": [
+        {
+          "name": "org_legal_suffix",
+          "regex": "[A-ZÄÖÜ][\\w\\u00C0-\\u024F]+(?:(?: [&] | )[A-ZÄÖÜa-zäöü][\\w\\u00C0-\\u024F]+){0,7} (?:GmbH|mbH|AG|e\\.? ?V\\.|KG|OHG|SE|gGmbH|UG|Ltd\\.|Inc\\.|S\\.?A\\.?|Co\\. ?KG)\\b",
+          "score": 0.85
+        }
+      ],
+      "context": ["firma", "unternehmen", "arbeitgeber", "gesellschaft"]
     },
     {
       "name": "DE_OrgInstitution",
       "entity_type": "ORGANIZATION",
-      "description": "German institutional names with optional prefix before keyword",
+      "description": "German institutional names with optional prefix",
       "patterns": [
         {
           "name": "org_institution_with_suffix",
@@ -89,12 +146,28 @@
     }
   ],
 
+  "false_positive_denylist": {
+    "_comment": "Terms that spaCy frequently misclassifies. Entities matching these exactly are removed.",
+    "terms": [
+      "Mobil", "Monitoring", "Grafana", "Nagios", "Icinga", "Webhosting",
+      "Berichtslinie", "Sozialversicherungsnr", "Personalausweis-Nr",
+      "Incident-Response", "Incident-Response-Prozesse",
+      "Betrieb und Monitoring", "Aufbau eines Monitoring",
+      "Webhosting-Plattform", "On-Premises", "Active Directory",
+      "Datev", "OTRS", "Sophos", "Veeam", "VMware", "Cisco",
+      "Apache", "Nginx", "MySQL", "Azure", "Intune", "Wazuh",
+      "Response", "Prozesse", "Compliance", "Migration",
+      "Implementierung", "Administration", "Konfiguration"
+    ]
+  },
+
   "entity_dedup": {
     "_comment": "When entities overlap, higher confidence wins. Priority breaks ties (lower = preferred).",
     "type_priority": {
       "LOCATION": 0,
       "ORGANIZATION": 1,
-      "PERSON": 2
+      "PHONE_NUMBER": 2,
+      "PERSON": 3
     }
   }
 }

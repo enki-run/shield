@@ -89,11 +89,17 @@ def _get_analyzer() -> AnalyzerEngine:
         # Load and register config-based rules
         rules_config = _load_rules()
         _dedup_config = rules_config.get("entity_dedup", {})
+        global _fp_denylist
+        _fp_denylist = set(
+            t.lower() for t in rules_config.get("false_positive_denylist", {}).get("terms", [])
+        )
         for recognizer in _build_recognizers_from_rules(rules_config):
             _analyzer_engine.registry.add_recognizer(recognizer)
 
     return _analyzer_engine
 
+
+_fp_denylist: set[str] = set()
 
 BALANCED_ENTITIES = [
     "PERSON",
@@ -105,6 +111,9 @@ BALANCED_ENTITIES = [
     "LOCATION",
     "IP_ADDRESS",
     "URL",
+    "DE_TAX_ID",
+    "DE_SOCIAL_SECURITY",
+    "DE_ID_CARD",
 ]
 COMPLIANT_ENTITIES = BALANCED_ENTITIES + [
     "NRP",
@@ -149,7 +158,8 @@ class PiiDetector:
         ]
 
         cleaned = [_trim_entity(e, text) for e in raw]
-        entities = _deduplicate_entities(cleaned, _dedup_config)
+        filtered = [e for e in cleaned if e.text.strip().lower() not in _fp_denylist]
+        entities = _deduplicate_entities(filtered, _dedup_config)
         entities.sort(key=lambda e: e.start)
         return entities
 
