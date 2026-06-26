@@ -16,7 +16,6 @@
   "known_open_baseline": [
     "Beispiel Trading Ltd.",
     "Beispiel e.V.",
-    "DE00123456780000000000",
     "L01X00T471",
     "Mustermann Consulting"
   ],
@@ -26,14 +25,10 @@
       "collisions": 0,
       "consistency_examples": [],
       "consistency_violations": 0,
-      "distinct_originals": 18,
-      "distinct_pseudonyms": 18,
+      "distinct_originals": 19,
+      "distinct_pseudonyms": 19,
       "docs": 15,
       "leak_examples": [
-        {
-          "doc": "rt-10-iban-invalid-checksum",
-          "substring": "DE00123456780000000000"
-        },
         {
           "doc": "rt-11-org-ev",
           "substring": "Beispiel e.V."
@@ -51,28 +46,24 @@
           "substring": "Mustermann Consulting"
         }
       ],
-      "leaks_accepted_known_open": 5,
+      "leaks_accepted_known_open": 4,
       "leaks_new": 0,
-      "leaks_total": 5,
+      "leaks_total": 4,
       "mode": "balanced",
       "new_leak_examples": [],
       "new_leak_rate": 0.0,
       "required_substrings": 24,
-      "residual_leak_rate": 0.2083
+      "residual_leak_rate": 0.1667
     },
     "compliant": {
       "collision_examples": [],
       "collisions": 0,
       "consistency_examples": [],
       "consistency_violations": 0,
-      "distinct_originals": 18,
-      "distinct_pseudonyms": 18,
+      "distinct_originals": 19,
+      "distinct_pseudonyms": 19,
       "docs": 15,
       "leak_examples": [
-        {
-          "doc": "rt-10-iban-invalid-checksum",
-          "substring": "DE00123456780000000000"
-        },
         {
           "doc": "rt-11-org-ev",
           "substring": "Beispiel e.V."
@@ -90,14 +81,14 @@
           "substring": "Mustermann Consulting"
         }
       ],
-      "leaks_accepted_known_open": 5,
+      "leaks_accepted_known_open": 4,
       "leaks_new": 0,
-      "leaks_total": 5,
+      "leaks_total": 4,
       "mode": "compliant",
       "new_leak_examples": [],
       "new_leak_rate": 0.0,
       "required_substrings": 24,
-      "residual_leak_rate": 0.2083
+      "residual_leak_rate": 0.1667
     }
   },
   "phase": "phase4-roundtrip-leak"

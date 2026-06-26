@@ -1,14 +1,14 @@
 {
   "cv_synthetic": {
-    "coverage_rate": 0.8718,
+    "coverage_rate": 0.8974,
     "gold_spans": 39,
     "lenient_type": {
-      "f1": 0.7711,
-      "fn": 7,
+      "f1": 0.7857,
+      "fn": 6,
       "fp": 12,
-      "precision": 0.7273,
-      "recall": 0.8205,
-      "tp": 32
+      "precision": 0.7333,
+      "recall": 0.8462,
+      "tp": 33
     },
     "official_inflated": {
       "precision": 1.0,
@@ -66,14 +66,14 @@
       ]
     ],
     "strict": {
-      "f1": 0.7711,
-      "fn": 7,
+      "f1": 0.7857,
+      "fn": 6,
       "fp": 12,
-      "precision": 0.7273,
-      "recall": 0.8205,
-      "tp": 32
+      "precision": 0.7333,
+      "recall": 0.8462,
+      "tp": 33
     },
-    "strict_false_negatives_count": 7,
+    "strict_false_negatives_count": 6,
     "strict_false_positives_count": 12,
     "text_len": 3148,
     "unlocated_expected": []
@@ -85,8 +85,8 @@
       "pass": true
     },
     "cv_f1_floor": {
-      "f1": 0.7711,
-      "floor": 0.7511,
+      "f1": 0.7857,
+      "floor": 0.7657,
       "pass": true
     },
     "gold_f1_floor": {
@@ -367,7 +367,7 @@
   "gold_doc_count": 11,
   "gold_span_count": 19,
   "known_open": [
-    "cv_synthetic strict recall 0.8205 is far below the inflated official 0.93 — the official number came from fuzzy substring matching, not span-exact scoring.",
+    "cv_synthetic strict recall 0.8462 is far below the inflated official 0.93 — the official number came from fuzzy substring matching, not span-exact scoring.",
     "gold leak (PII left in cleartext) in g06_org_city: missed [('ORGANIZATION', 25, 36)]",
     "gold leak (PII left in cleartext) in g07_id_card: missed [('DE_ID_CARD', 35, 44)]",
     "gold leak (PII left in cleartext) in g08_two_persons_org: missed [('PERSON', 25, 39), ('PERSON', 44, 60), ('ORGANIZATION', 76, 87)]",

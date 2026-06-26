@@ -2,7 +2,7 @@
   "all_green": true,
   "components": [
     {
-      "duration_s": 2.17,
+      "duration_s": 2.16,
       "exit_code": 0,
       "id": "phase1-strict-scorer",
       "kind": "script",
@@ -11,7 +11,7 @@
       "target": "benchmarks/eval/phase1_strict_scorer.py"
     },
     {
-      "duration_s": 3.46,
+      "duration_s": 3.49,
       "exit_code": 0,
       "id": "phase2-per-type-recall",
       "kind": "script",
@@ -20,7 +20,7 @@
       "target": "benchmarks/eval/phase2_per_type_recall.py"
     },
     {
-      "duration_s": 2.36,
+      "duration_s": 2.4,
       "exit_code": 0,
       "id": "phase3-fp-stress",
       "kind": "script",
@@ -29,7 +29,7 @@
       "target": "benchmarks/eval/phase3_fp_stress.py"
     },
     {
-      "duration_s": 2.11,
+      "duration_s": 2.1,
       "exit_code": 0,
       "id": "phase4-roundtrip-leak",
       "kind": "script",
@@ -38,7 +38,7 @@
       "target": "benchmarks/eval/phase4_roundtrip.py"
     },
     {
-      "duration_s": 13.91,
+      "duration_s": 13.96,
       "exit_code": 0,
       "id": "phase5-threshold-sweep",
       "kind": "script",
@@ -47,7 +47,7 @@
       "target": "benchmarks/eval/phase5_threshold_sweep.py"
     },
     {
-      "duration_s": 25.26,
+      "duration_s": 25.51,
       "exit_code": 0,
       "id": "phase5-guard",
       "kind": "pytest",
@@ -65,7 +65,7 @@
       "xpass_alert": false
     },
     {
-      "duration_s": 8.07,
+      "duration_s": 8.13,
       "exit_code": 0,
       "id": "phase6-dedup-units",
       "kind": "pytest",
@@ -73,9 +73,9 @@
       "pytest": {
         "error": 0,
         "failed": 0,
-        "passed": 8,
+        "passed": 9,
         "skipped": 0,
-        "xfailed": 1,
+        "xfailed": 0,
         "xpassed": 0
       },
       "regressed": false,
@@ -83,7 +83,7 @@
       "xpass_alert": false
     },
     {
-      "duration_s": 3.28,
+      "duration_s": 3.32,
       "exit_code": 0,
       "id": "accuracy-regressions",
       "kind": "pytest",
@@ -91,7 +91,7 @@
       "pytest": {
         "error": 0,
         "failed": 0,
-        "passed": 6,
+        "passed": 7,
         "skipped": 0,
         "xfailed": 0,
         "xpassed": 0
@@ -107,8 +107,8 @@
   "n_regressions": 0,
   "n_xpass_alerts": 0,
   "pytest_totals": {
-    "passed": 23,
-    "xfailed": 3
+    "passed": 25,
+    "xfailed": 2
   },
   "python": "3.12.9",
   "regressions": [],

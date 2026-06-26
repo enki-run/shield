@@ -5,6 +5,19 @@
 
   "rules": [
     {
+      "name": "DE_IBAN_Fallback",
+      "entity_type": "IBAN_CODE",
+      "description": "German IBAN by shape (DE + 20 digits). Catches typed/OCR IBANs that fail the ISO-13616 mod-97 checksum, which Presidio's IbanRecognizer silently rejects (-> verbatim leak). Lower score than the validating recognizer.",
+      "patterns": [
+        {
+          "name": "de_iban_shape",
+          "regex": "\\bDE\\d{2}(?:\\s?\\d{4}){4}\\s?\\d{2}\\b",
+          "score": 0.6
+        }
+      ],
+      "context": ["iban", "konto", "bank", "überweisung", "ueberweisung", "bankverbindung", "zahlung"]
+    },
+    {
       "name": "DE_StreetWithNumber",
       "entity_type": "LOCATION",
       "description": "German street + house number",

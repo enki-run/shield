@@ -107,3 +107,16 @@ def test_street_regex_does_not_swallow_preceding_words():
     locs = [e.text for e in ents if e.entity_type == "LOCATION"]
     assert not any("Mustermann" in loc for loc in locs), f"greedy street span: {locs}"
     assert "PERSON" in [e.entity_type for e in ents], "person swallowed by giant span"
+
+
+@pytest.mark.skipif(not HAS_SPACY, reason=SKIP_MSG)
+def test_typed_iban_with_invalid_checksum_is_detected():
+    """Audit defect: Presidio's IbanRecognizer rejects checksum-invalid IBANs
+    (typos/OCR), so a mistyped German IBAN leaks verbatim. A format fallback must
+    catch the DE IBAN shape (DE + 20 digits) at a lower confidence."""
+    from app.pipeline.detector import PiiDetector
+
+    det = PiiDetector(mode="balanced")
+    # DE + 20 digits: syntactically an IBAN but fails the mod-97 checksum
+    ents = det.detect("Bitte auf IBAN DE00 1234 5678 0000 0000 00 ueberweisen.")
+    assert "IBAN_CODE" in [e.entity_type for e in ents]
