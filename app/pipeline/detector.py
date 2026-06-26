@@ -93,6 +93,22 @@ def _get_analyzer() -> AnalyzerEngine:
         _fp_denylist = set(
             t.lower() for t in rules_config.get("false_positive_denylist", {}).get("terms", [])
         )
+        # Presidio ships CreditCard/US_SSN recognizers registered for 'en' only.
+        # With a 'de'-only registry they are silently absent, so CREDIT_CARD and
+        # US_SSN get 0% recall and card/SSN numbers leak. Register them for 'de'
+        # (both are language-agnostic: regex + Luhn / digit patterns).
+        from presidio_analyzer.predefined_recognizers import (
+            CreditCardRecognizer,
+            UsSsnRecognizer,
+        )
+
+        _analyzer_engine.registry.add_recognizer(
+            CreditCardRecognizer(supported_language="de")
+        )
+        _analyzer_engine.registry.add_recognizer(
+            UsSsnRecognizer(supported_language="de")
+        )
+
         for recognizer in _build_recognizers_from_rules(rules_config):
             _analyzer_engine.registry.add_recognizer(recognizer)
 
@@ -123,6 +139,26 @@ COMPLIANT_ENTITIES = BALANCED_ENTITIES + [
 ]
 CONFIDENCE_THRESHOLDS = {"balanced": 0.7, "compliant": 0.5}
 
+# High-precision, pattern/checksum-based PII (not fuzzy NER). These keep a low
+# confidence floor so the balanced NER threshold (0.70) cannot suppress URLs,
+# IPs and structured IDs — which score 0.4–0.6 and otherwise leak in the
+# default mode. Fuzzy NER types (PERSON/LOCATION/ORGANIZATION) keep the mode
+# threshold to bound over-redaction.
+STRUCTURED_PII_TYPES = {
+    "EMAIL_ADDRESS",
+    "PHONE_NUMBER",
+    "IBAN_CODE",
+    "CREDIT_CARD",
+    "IP_ADDRESS",
+    "URL",
+    "DE_TAX_ID",
+    "DE_SOCIAL_SECURITY",
+    "DE_ID_CARD",
+    "US_SSN",
+    "MEDICAL_LICENSE",
+}
+STRUCTURED_PII_FLOOR = 0.4
+
 
 class PiiDetector:
     def __init__(self, mode: str = "balanced"):
@@ -134,12 +170,25 @@ class PiiDetector:
         self.analyzer = _get_analyzer()
 
     def detect(self, text: str) -> list[DetectedEntity]:
+        # Analyze at the low structured floor, then apply per-type thresholds:
+        # structured PII passes at the floor, fuzzy NER at the mode threshold.
+        floor = min(self.threshold, STRUCTURED_PII_FLOOR)
         results = self.analyzer.analyze(
             text=text,
             language="de",
             entities=self.entities,
-            score_threshold=self.threshold,
+            score_threshold=floor,
         )
+        results = [
+            r
+            for r in results
+            if r.score
+            >= (
+                STRUCTURED_PII_FLOOR
+                if r.entity_type in STRUCTURED_PII_TYPES
+                else self.threshold
+            )
+        ]
 
         raw = [
             DetectedEntity(
@@ -220,6 +269,13 @@ def _trim_entity(entity: DetectedEntity, full_text: str) -> DetectedEntity:
     if entity.entity_type != "ORGANIZATION":
         return entity
 
+    # Only spaCy NER spans need trimming — they grab sentence fragments like
+    # 'der'/'fristgerecht'. Regex PatternRecognizer spans (DE_OrgSuffix,
+    # DE_OrgInstitution) are already precise; trimming them strips the leading
+    # name before an '&' connector and leaks it ('Weber & Klein GmbH').
+    if "spacy" not in entity.recognizer.lower():
+        return entity
+
     words = entity.text.split()
     if len(words) <= 1:
         return entity
@@ -291,10 +347,26 @@ def _deduplicate_entities(
 
     kept = []
     for candidate in sorted_ents:
-        overlaps = any(
-            candidate.start < ex.end and candidate.end > ex.start for ex in kept
-        )
-        if not overlaps:
-            kept.append(candidate)
+        contained_idx = []
+        conflict = False
+        for i, ex in enumerate(kept):
+            if not (candidate.start < ex.end and candidate.end > ex.start):
+                continue  # no overlap with this kept span
+            if candidate.start <= ex.start and candidate.end >= ex.end:
+                # Candidate fully contains a narrower kept span: the wider span
+                # redacts more, so it replaces the narrower one — otherwise the
+                # uncovered tail (house number, account digits) leaks.
+                contained_idx.append(i)
+            else:
+                # Partial overlap, or candidate sits inside an existing span:
+                # keep the existing (higher-confidence) one; never let a long
+                # span swallow several distinct neighbouring entities.
+                conflict = True
+                break
+        if conflict:
+            continue
+        for i in reversed(contained_idx):
+            kept.pop(i)
+        kept.append(candidate)
 
     return kept
