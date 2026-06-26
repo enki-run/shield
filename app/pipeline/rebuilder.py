@@ -62,27 +62,33 @@ def _rebuild_docx(content, output_path):
         return
     shutil.copy2(original_path, output_path)
     doc = DocxDocument(output_path)
+
+    # Longest original first: a short original (PERSON "Mustermann") must not
+    # clobber a longer overlapping one (ORG "Mustermann Logistik GmbH") inside a
+    # run — otherwise the longer span is destroyed, a cleartext fragment leaks
+    # and its mapping is orphaned. Mirrors the offset-anchored text path.
+    ordered = sorted(replacements.items(), key=lambda kv: len(kv[0]), reverse=True)
+
+    def _apply_to_run(run):
+        for original, pseudonym in ordered:
+            if original in run.text:
+                run.text = run.text.replace(original, pseudonym)
+
     for para in doc.paragraphs:
         for run in para.runs:
-            for original, pseudonym in replacements.items():
-                if original in run.text:
-                    run.text = run.text.replace(original, pseudonym)
+            _apply_to_run(run)
     for table in doc.tables:
         for row in table.rows:
             for cell in row.cells:
                 for para in cell.paragraphs:
                     for run in para.runs:
-                        for original, pseudonym in replacements.items():
-                            if original in run.text:
-                                run.text = run.text.replace(original, pseudonym)
+                        _apply_to_run(run)
     for section in doc.sections:
         for hf in [section.header, section.footer]:
             if hf:
                 for para in hf.paragraphs:
                     for run in para.runs:
-                        for original, pseudonym in replacements.items():
-                            if original in run.text:
-                                run.text = run.text.replace(original, pseudonym)
+                        _apply_to_run(run)
     doc.save(output_path)
 
 
