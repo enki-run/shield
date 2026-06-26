@@ -18,6 +18,19 @@
       "context": ["iban", "konto", "bank", "überweisung", "ueberweisung", "bankverbindung", "zahlung"]
     },
     {
+      "name": "IPv6_Compressed",
+      "entity_type": "IP_ADDRESS",
+      "description": "Full + compressed (::) IPv6. Presidio's IpRecognizer truncates compressed forms to the prefix (2001:db8:: only), leaking the tail. Boundary guards (not \\b) avoid MAC addresses / HH:MM:SS times; requiring >=1 hex group avoids a bare '::' scope operator.",
+      "patterns": [
+        {
+          "name": "ipv6_full_or_compressed",
+          "regex": "(?<![0-9A-Za-z:])(?:(?:[0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4}|(?:[0-9A-Fa-f]{1,4}(?::[0-9A-Fa-f]{1,4})*::(?:[0-9A-Fa-f]{1,4}(?::[0-9A-Fa-f]{1,4})*)?|::[0-9A-Fa-f]{1,4}(?::[0-9A-Fa-f]{1,4})*))(?![0-9A-Za-z:])",
+          "score": 0.6
+        }
+      ],
+      "context": ["ip", "ipv6", "adresse", "host", "gateway"]
+    },
+    {
       "name": "DE_StreetWithNumber",
       "entity_type": "LOCATION",
       "description": "German street + house number",

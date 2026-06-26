@@ -135,3 +135,30 @@ def test_org_with_dotted_legal_suffix_is_detected():
     ):
         orgs = [e.text for e in det.detect(txt) if e.entity_type == "ORGANIZATION"]
         assert any("Beispiel" in o for o in orgs), f"dotted-suffix org leaked: {orgs} in {txt!r}"
+
+
+@pytest.mark.skipif(not HAS_SPACY, reason=SKIP_MSG)
+def test_ipv6_compressed_fully_covered():
+    """Audit defect: Presidio's IpRecognizer truncates compressed IPv6 to the
+    prefix ('2001:db8::'), so the tail leaks. A config rule must cover the full
+    compressed form span-exact."""
+    from app.pipeline.detector import PiiDetector
+
+    text = "Kurzform 2001:db8::8a2e:370:7334 ebenfalls gueltig."
+    value = "2001:db8::8a2e:370:7334"
+    s = text.index(value)
+    ents = PiiDetector(mode="balanced").detect(text)
+    assert any(
+        e.entity_type == "IP_ADDRESS" and e.start == s and e.end == s + len(value)
+        for e in ents
+    ), f"compressed IPv6 not span-exact: {[(e.entity_type, e.text) for e in ents]}"
+
+
+@pytest.mark.skipif(not HAS_SPACY, reason=SKIP_MSG)
+def test_ipv6_rule_no_mac_or_scope_false_positive():
+    """The IPv6 rule must not flag MAC addresses or the C++ '::' scope operator."""
+    from app.pipeline.detector import PiiDetector
+
+    det = PiiDetector(mode="compliant")
+    for t in ("MAC 00:1A:2B:3C:4D:5E am Switch.", "Der Operator :: in C++ trennt Namensraeume."):
+        assert not [e for e in det.detect(t) if e.entity_type == "IP_ADDRESS"], t

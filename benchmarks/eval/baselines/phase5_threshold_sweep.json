@@ -68,7 +68,6 @@
     "balanced_0.70": {
       "miss_types": [
         "DE_ID_CARD",
-        "IP_ADDRESS",
         "ORGANIZATION"
       ],
       "ner_fp": 4,
@@ -76,15 +75,14 @@
       "ner_recall": 0.9583,
       "ner_total": 48,
       "struct_fp": 0,
-      "struct_hits": 144,
-      "struct_recall": 0.973,
+      "struct_hits": 145,
+      "struct_recall": 0.9797,
       "struct_total": 148,
       "threshold": 0.7
     },
     "compliant_0.50": {
       "miss_types": [
         "DE_ID_CARD",
-        "IP_ADDRESS",
         "ORGANIZATION"
       ],
       "ner_fp": 4,
@@ -92,8 +90,8 @@
       "ner_recall": 0.9583,
       "ner_total": 48,
       "struct_fp": 0,
-      "struct_hits": 144,
-      "struct_recall": 0.973,
+      "struct_hits": 145,
+      "struct_recall": 0.9797,
       "struct_total": 148,
       "threshold": 0.5
     }
@@ -106,7 +104,7 @@
   "recommendations": [
     "NER recall is IDENTICAL at thr 0.30/0.50/0.70 (=0.96): spaCy emits a near-binary score (~0.85 base, 1.0 with a context-word boost), so any threshold in [0.30,0.85] gives the same NER recall. Balanced=0.70 vs compliant=0.50 does NOT change NER recall.",
     "NER recall first DROPS at thr=0.80 (0.92) — the un-boosted 0.85 spaCy spans get cut above 0.85. Keep the NER threshold at or below 0.80.",
-    "At the balanced thr=0.70 the 0.40 structured FLOOR raises structured recall from 0.80 (no floor) to 0.97: without it, IP/URL (base 0.60) and bare DE_TAX_ID (base 0.50) would leak in balanced mode. The floor is JUSTIFIED and well-placed.",
+    "At the balanced thr=0.70 the 0.40 structured FLOOR raises structured recall from 0.80 (no floor) to 0.98: without it, IP/URL (base 0.60) and bare DE_TAX_ID (base 0.50) would leak in balanced mode. The floor is JUSTIFIED and well-placed.",
     "Lowest structured raw score on corpus is 0.50 >= 0.40 floor: the floor admits every structured hit here without lowering precision (0 structured FP on clean docs across the sweep).",
     "0 STRUCTURED false positives on clean docs at EVERY threshold — the denylist + FP filter already strip structured noise, so the structured floor costs no precision.",
     "KNOWN-OPEN (residual spaCy NER FP on tech terms): 4 LOCATION FP on clean docs at thr=0.70 (e.g. 'Cisco-Hardware', 'Sophos-Firewalls', 'Security-Monitoring'). They score 0.85 — IDENTICAL to legit NER — so the FPs only clear at thr=0.90, where real NER recall collapses 0.96->0.21. Threshold tuning CANNOT fix this; the fix is denylist/context coverage (hyphenated tech compounds), not a higher threshold. Documented as known-open, not a regression."
@@ -117,7 +115,6 @@
     {
       "miss_types": [
         "DE_ID_CARD",
-        "IP_ADDRESS",
         "ORGANIZATION"
       ],
       "ner_fp": 4,
@@ -125,15 +122,14 @@
       "ner_recall": 0.9583,
       "ner_total": 48,
       "struct_fp": 0,
-      "struct_hits": 144,
-      "struct_recall": 0.973,
+      "struct_hits": 145,
+      "struct_recall": 0.9797,
       "struct_total": 148,
       "threshold": 0.3
     },
     {
       "miss_types": [
         "DE_ID_CARD",
-        "IP_ADDRESS",
         "ORGANIZATION"
       ],
       "ner_fp": 4,
@@ -141,15 +137,14 @@
       "ner_recall": 0.9583,
       "ner_total": 48,
       "struct_fp": 0,
-      "struct_hits": 144,
-      "struct_recall": 0.973,
+      "struct_hits": 145,
+      "struct_recall": 0.9797,
       "struct_total": 148,
       "threshold": 0.4
     },
     {
       "miss_types": [
         "DE_ID_CARD",
-        "IP_ADDRESS",
         "ORGANIZATION"
       ],
       "ner_fp": 4,
@@ -157,15 +152,14 @@
       "ner_recall": 0.9583,
       "ner_total": 48,
       "struct_fp": 0,
-      "struct_hits": 144,
-      "struct_recall": 0.973,
+      "struct_hits": 145,
+      "struct_recall": 0.9797,
       "struct_total": 148,
       "threshold": 0.5
     },
     {
       "miss_types": [
         "DE_ID_CARD",
-        "IP_ADDRESS",
         "ORGANIZATION"
       ],
       "ner_fp": 4,
@@ -173,15 +167,14 @@
       "ner_recall": 0.9583,
       "ner_total": 48,
       "struct_fp": 0,
-      "struct_hits": 144,
-      "struct_recall": 0.973,
+      "struct_hits": 145,
+      "struct_recall": 0.9797,
       "struct_total": 148,
       "threshold": 0.6
     },
     {
       "miss_types": [
         "DE_ID_CARD",
-        "IP_ADDRESS",
         "ORGANIZATION"
       ],
       "ner_fp": 4,
@@ -189,15 +182,14 @@
       "ner_recall": 0.9583,
       "ner_total": 48,
       "struct_fp": 0,
-      "struct_hits": 144,
-      "struct_recall": 0.973,
+      "struct_hits": 145,
+      "struct_recall": 0.9797,
       "struct_total": 148,
       "threshold": 0.7
     },
     {
       "miss_types": [
         "DE_ID_CARD",
-        "IP_ADDRESS",
         "ORGANIZATION"
       ],
       "ner_fp": 4,
@@ -205,15 +197,14 @@
       "ner_recall": 0.9167,
       "ner_total": 48,
       "struct_fp": 0,
-      "struct_hits": 144,
-      "struct_recall": 0.973,
+      "struct_hits": 145,
+      "struct_recall": 0.9797,
       "struct_total": 148,
       "threshold": 0.8
     },
     {
       "miss_types": [
         "DE_ID_CARD",
-        "IP_ADDRESS",
         "LOCATION",
         "ORGANIZATION",
         "PERSON"
@@ -223,8 +214,8 @@
       "ner_recall": 0.2083,
       "ner_total": 48,
       "struct_fp": 0,
-      "struct_hits": 144,
-      "struct_recall": 0.973,
+      "struct_hits": 145,
+      "struct_recall": 0.9797,
       "struct_total": 148,
       "threshold": 0.9
     }
@@ -237,8 +228,8 @@
       "ner_recall": 0.9583,
       "ner_total": 48,
       "struct_fp": 0,
-      "struct_hits": 144,
-      "struct_recall": 0.973,
+      "struct_hits": 145,
+      "struct_recall": 0.9797,
       "struct_total": 148,
       "threshold": 0.3
     },
@@ -249,8 +240,8 @@
       "ner_recall": 0.9583,
       "ner_total": 48,
       "struct_fp": 0,
-      "struct_hits": 144,
-      "struct_recall": 0.973,
+      "struct_hits": 145,
+      "struct_recall": 0.9797,
       "struct_total": 148,
       "threshold": 0.4
     },
@@ -261,8 +252,8 @@
       "ner_recall": 0.9583,
       "ner_total": 48,
       "struct_fp": 0,
-      "struct_hits": 144,
-      "struct_recall": 0.973,
+      "struct_hits": 145,
+      "struct_recall": 0.9797,
       "struct_total": 148,
       "threshold": 0.5
     },
@@ -273,8 +264,8 @@
       "ner_recall": 0.9583,
       "ner_total": 48,
       "struct_fp": 0,
-      "struct_hits": 142,
-      "struct_recall": 0.9595,
+      "struct_hits": 143,
+      "struct_recall": 0.9662,
       "struct_total": 148,
       "threshold": 0.6
     },

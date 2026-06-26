@@ -2,7 +2,7 @@
   "all_green": true,
   "components": [
     {
-      "duration_s": 2.17,
+      "duration_s": 2.25,
       "exit_code": 0,
       "id": "phase1-strict-scorer",
       "kind": "script",
@@ -11,7 +11,7 @@
       "target": "benchmarks/eval/phase1_strict_scorer.py"
     },
     {
-      "duration_s": 3.54,
+      "duration_s": 3.62,
       "exit_code": 0,
       "id": "phase2-per-type-recall",
       "kind": "script",
@@ -20,7 +20,7 @@
       "target": "benchmarks/eval/phase2_per_type_recall.py"
     },
     {
-      "duration_s": 2.52,
+      "duration_s": 2.5,
       "exit_code": 0,
       "id": "phase3-fp-stress",
       "kind": "script",
@@ -29,7 +29,7 @@
       "target": "benchmarks/eval/phase3_fp_stress.py"
     },
     {
-      "duration_s": 2.24,
+      "duration_s": 2.17,
       "exit_code": 0,
       "id": "phase4-roundtrip-leak",
       "kind": "script",
@@ -38,7 +38,7 @@
       "target": "benchmarks/eval/phase4_roundtrip.py"
     },
     {
-      "duration_s": 14.88,
+      "duration_s": 14.64,
       "exit_code": 0,
       "id": "phase5-threshold-sweep",
       "kind": "script",
@@ -47,7 +47,7 @@
       "target": "benchmarks/eval/phase5_threshold_sweep.py"
     },
     {
-      "duration_s": 27.91,
+      "duration_s": 26.24,
       "exit_code": 0,
       "id": "phase5-guard",
       "kind": "pytest",
@@ -65,7 +65,7 @@
       "xpass_alert": false
     },
     {
-      "duration_s": 8.77,
+      "duration_s": 8.51,
       "exit_code": 0,
       "id": "phase6-dedup-units",
       "kind": "pytest",
@@ -83,7 +83,7 @@
       "xpass_alert": false
     },
     {
-      "duration_s": 3.57,
+      "duration_s": 3.38,
       "exit_code": 0,
       "id": "accuracy-regressions",
       "kind": "pytest",
@@ -91,7 +91,7 @@
       "pytest": {
         "error": 0,
         "failed": 0,
-        "passed": 8,
+        "passed": 10,
         "skipped": 0,
         "xfailed": 0,
         "xpassed": 0
@@ -107,7 +107,7 @@
   "n_regressions": 0,
   "n_xpass_alerts": 0,
   "pytest_totals": {
-    "passed": 26,
+    "passed": 28,
     "xfailed": 2
   },
   "python": "3.12.9",

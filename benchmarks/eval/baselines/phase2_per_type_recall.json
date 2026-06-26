@@ -16,16 +16,11 @@
       "best_any_recall": 0.875,
       "best_typed_recall": 0.875,
       "type": "ORGANIZATION"
-    },
-    {
-      "best_any_recall": 0.9375,
-      "best_typed_recall": 0.875,
-      "type": "IP_ADDRESS"
     }
   ],
   "macro_recall_floor": 0.9,
-  "macro_typed_recall_best_mode": 0.9375,
-  "micro_typed_recall_best_mode": 0.9388,
+  "macro_typed_recall_best_mode": 0.9427,
+  "micro_typed_recall_best_mode": 0.9439,
   "modes": [
     "balanced",
     "compliant"
@@ -55,17 +50,6 @@
       "type": "ORGANIZATION"
     },
     {
-      "balanced_any": 0.9375,
-      "balanced_typed": 0.875,
-      "best_any": 0.9375,
-      "best_typed": 0.875,
-      "compliant_any": 0.9375,
-      "compliant_typed": 0.875,
-      "dead_both_modes": false,
-      "n": 16,
-      "type": "IP_ADDRESS"
-    },
-    {
       "balanced_any": 1.0,
       "balanced_typed": 0.9375,
       "best_any": 1.0,
@@ -86,6 +70,17 @@
       "dead_both_modes": false,
       "n": 16,
       "type": "DE_SOCIAL_SECURITY"
+    },
+    {
+      "balanced_any": 1.0,
+      "balanced_typed": 0.9375,
+      "best_any": 1.0,
+      "best_typed": 0.9375,
+      "compliant_any": 1.0,
+      "compliant_typed": 0.9375,
+      "dead_both_modes": false,
+      "n": 16,
+      "type": "IP_ADDRESS"
     },
     {
       "balanced_any": 1.0,
