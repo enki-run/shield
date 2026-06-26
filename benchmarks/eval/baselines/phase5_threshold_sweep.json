@@ -1,0 +1,327 @@
+{
+  "clean_doc_residual_fps_at_0.70": [
+    [
+      "LOCATION",
+      "Endgeraete"
+    ],
+    [
+      "LOCATION",
+      "Cisco-Hardware"
+    ],
+    [
+      "LOCATION",
+      "Sophos-Firewalls"
+    ],
+    [
+      "LOCATION",
+      "Security-Monitoring"
+    ]
+  ],
+  "confidence_histogram": {
+    "buckets": [
+      "<0.4",
+      "0.4-0.5",
+      "0.5-0.6",
+      "0.6-0.7",
+      "0.7-0.8",
+      "0.8-0.85",
+      "0.85-0.9",
+      "0.9-1.0"
+    ],
+    "hist": {
+      "NER": [
+        0,
+        0,
+        0,
+        0,
+        9,
+        0,
+        78,
+        9
+      ],
+      "STRUCT": [
+        0,
+        0,
+        2,
+        27,
+        4,
+        0,
+        35,
+        71
+      ]
+    },
+    "ner_distinct_scores": [
+      0.7,
+      0.75,
+      0.85,
+      0.9,
+      1.0
+    ],
+    "struct_max": 1.0,
+    "struct_min": 0.5
+  },
+  "corpus": {
+    "clean_docs": 4,
+    "per_type_examples": 196
+  },
+  "operating_point_results": {
+    "balanced_0.70": {
+      "miss_types": [
+        "DE_ID_CARD",
+        "IP_ADDRESS",
+        "ORGANIZATION"
+      ],
+      "ner_fp": 4,
+      "ner_hits": 43,
+      "ner_recall": 0.8958,
+      "ner_total": 48,
+      "struct_fp": 0,
+      "struct_hits": 144,
+      "struct_recall": 0.973,
+      "struct_total": 148,
+      "threshold": 0.7
+    },
+    "compliant_0.50": {
+      "miss_types": [
+        "DE_ID_CARD",
+        "IP_ADDRESS",
+        "ORGANIZATION"
+      ],
+      "ner_fp": 4,
+      "ner_hits": 43,
+      "ner_recall": 0.8958,
+      "ner_total": 48,
+      "struct_fp": 0,
+      "struct_hits": 144,
+      "struct_recall": 0.973,
+      "struct_total": 148,
+      "threshold": 0.5
+    }
+  },
+  "operating_points": {
+    "balanced": 0.7,
+    "compliant": 0.5
+  },
+  "phase": "phase5-threshold-sweep",
+  "recommendations": [
+    "NER recall is IDENTICAL at thr 0.30/0.50/0.70 (=0.90): spaCy emits a near-binary score (~0.85 base, 1.0 with a context-word boost), so any threshold in [0.30,0.85] gives the same NER recall. Balanced=0.70 vs compliant=0.50 does NOT change NER recall.",
+    "NER recall first DROPS at thr=0.80 (0.85) — the un-boosted 0.85 spaCy spans get cut above 0.85. Keep the NER threshold at or below 0.80.",
+    "At the balanced thr=0.70 the 0.40 structured FLOOR raises structured recall from 0.80 (no floor) to 0.97: without it, IP/URL (base 0.60) and bare DE_TAX_ID (base 0.50) would leak in balanced mode. The floor is JUSTIFIED and well-placed.",
+    "Lowest structured raw score on corpus is 0.50 >= 0.40 floor: the floor admits every structured hit here without lowering precision (0 structured FP on clean docs across the sweep).",
+    "0 STRUCTURED false positives on clean docs at EVERY threshold — the denylist + FP filter already strip structured noise, so the structured floor costs no precision.",
+    "KNOWN-OPEN (residual spaCy NER FP on tech terms): 4 LOCATION FP on clean docs at thr=0.70 (e.g. 'Cisco-Hardware', 'Sophos-Firewalls', 'Security-Monitoring'). They score 0.85 — IDENTICAL to legit NER — so the FPs only clear at thr=0.90, where real NER recall collapses 0.90->0.21. Threshold tuning CANNOT fix this; the fix is denylist/context coverage (hyphenated tech compounds), not a higher threshold. Documented as known-open, not a regression."
+  ],
+  "report_only": true,
+  "structured_floor": 0.4,
+  "sweep_floored": [
+    {
+      "miss_types": [
+        "DE_ID_CARD",
+        "IP_ADDRESS",
+        "ORGANIZATION"
+      ],
+      "ner_fp": 4,
+      "ner_hits": 43,
+      "ner_recall": 0.8958,
+      "ner_total": 48,
+      "struct_fp": 0,
+      "struct_hits": 144,
+      "struct_recall": 0.973,
+      "struct_total": 148,
+      "threshold": 0.3
+    },
+    {
+      "miss_types": [
+        "DE_ID_CARD",
+        "IP_ADDRESS",
+        "ORGANIZATION"
+      ],
+      "ner_fp": 4,
+      "ner_hits": 43,
+      "ner_recall": 0.8958,
+      "ner_total": 48,
+      "struct_fp": 0,
+      "struct_hits": 144,
+      "struct_recall": 0.973,
+      "struct_total": 148,
+      "threshold": 0.4
+    },
+    {
+      "miss_types": [
+        "DE_ID_CARD",
+        "IP_ADDRESS",
+        "ORGANIZATION"
+      ],
+      "ner_fp": 4,
+      "ner_hits": 43,
+      "ner_recall": 0.8958,
+      "ner_total": 48,
+      "struct_fp": 0,
+      "struct_hits": 144,
+      "struct_recall": 0.973,
+      "struct_total": 148,
+      "threshold": 0.5
+    },
+    {
+      "miss_types": [
+        "DE_ID_CARD",
+        "IP_ADDRESS",
+        "ORGANIZATION"
+      ],
+      "ner_fp": 4,
+      "ner_hits": 43,
+      "ner_recall": 0.8958,
+      "ner_total": 48,
+      "struct_fp": 0,
+      "struct_hits": 144,
+      "struct_recall": 0.973,
+      "struct_total": 148,
+      "threshold": 0.6
+    },
+    {
+      "miss_types": [
+        "DE_ID_CARD",
+        "IP_ADDRESS",
+        "ORGANIZATION"
+      ],
+      "ner_fp": 4,
+      "ner_hits": 43,
+      "ner_recall": 0.8958,
+      "ner_total": 48,
+      "struct_fp": 0,
+      "struct_hits": 144,
+      "struct_recall": 0.973,
+      "struct_total": 148,
+      "threshold": 0.7
+    },
+    {
+      "miss_types": [
+        "DE_ID_CARD",
+        "IP_ADDRESS",
+        "ORGANIZATION"
+      ],
+      "ner_fp": 4,
+      "ner_hits": 41,
+      "ner_recall": 0.8542,
+      "ner_total": 48,
+      "struct_fp": 0,
+      "struct_hits": 144,
+      "struct_recall": 0.973,
+      "struct_total": 148,
+      "threshold": 0.8
+    },
+    {
+      "miss_types": [
+        "DE_ID_CARD",
+        "IP_ADDRESS",
+        "LOCATION",
+        "ORGANIZATION",
+        "PERSON"
+      ],
+      "ner_fp": 0,
+      "ner_hits": 10,
+      "ner_recall": 0.2083,
+      "ner_total": 48,
+      "struct_fp": 0,
+      "struct_hits": 144,
+      "struct_recall": 0.973,
+      "struct_total": 148,
+      "threshold": 0.9
+    }
+  ],
+  "sweep_no_floor": [
+    {
+      "miss_types": [],
+      "ner_fp": 4,
+      "ner_hits": 43,
+      "ner_recall": 0.8958,
+      "ner_total": 48,
+      "struct_fp": 0,
+      "struct_hits": 144,
+      "struct_recall": 0.973,
+      "struct_total": 148,
+      "threshold": 0.3
+    },
+    {
+      "miss_types": [],
+      "ner_fp": 4,
+      "ner_hits": 43,
+      "ner_recall": 0.8958,
+      "ner_total": 48,
+      "struct_fp": 0,
+      "struct_hits": 144,
+      "struct_recall": 0.973,
+      "struct_total": 148,
+      "threshold": 0.4
+    },
+    {
+      "miss_types": [],
+      "ner_fp": 4,
+      "ner_hits": 43,
+      "ner_recall": 0.8958,
+      "ner_total": 48,
+      "struct_fp": 0,
+      "struct_hits": 144,
+      "struct_recall": 0.973,
+      "struct_total": 148,
+      "threshold": 0.5
+    },
+    {
+      "miss_types": [],
+      "ner_fp": 4,
+      "ner_hits": 43,
+      "ner_recall": 0.8958,
+      "ner_total": 48,
+      "struct_fp": 0,
+      "struct_hits": 142,
+      "struct_recall": 0.9595,
+      "struct_total": 148,
+      "threshold": 0.6
+    },
+    {
+      "miss_types": [],
+      "ner_fp": 4,
+      "ner_hits": 43,
+      "ner_recall": 0.8958,
+      "ner_total": 48,
+      "struct_fp": 0,
+      "struct_hits": 118,
+      "struct_recall": 0.7973,
+      "struct_total": 148,
+      "threshold": 0.7
+    },
+    {
+      "miss_types": [],
+      "ner_fp": 4,
+      "ner_hits": 41,
+      "ner_recall": 0.8542,
+      "ner_total": 48,
+      "struct_fp": 0,
+      "struct_hits": 114,
+      "struct_recall": 0.7703,
+      "struct_total": 148,
+      "threshold": 0.8
+    },
+    {
+      "miss_types": [],
+      "ner_fp": 0,
+      "ner_hits": 10,
+      "ner_recall": 0.2083,
+      "ner_total": 48,
+      "struct_fp": 0,
+      "struct_hits": 72,
+      "struct_recall": 0.4865,
+      "struct_total": 148,
+      "threshold": 0.9
+    }
+  ],
+  "thresholds": [
+    0.3,
+    0.4,
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.9
+  ]
+}

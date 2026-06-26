@@ -1,0 +1,196 @@
+{"type": "IBAN_CODE", "text": "Bitte ueberweisen Sie auf IBAN DE89 3704 0044 0532 0130 00 bis Monatsende.", "value": "DE89 3704 0044 0532 0130 00"}
+{"type": "IBAN_CODE", "text": "Die Kontoverbindung lautet DE89370400440532013000 ohne Leerzeichen.", "value": "DE89370400440532013000"}
+{"type": "IBAN_CODE", "text": "Gehaltskonto: DE75 5121 0800 1245 1261 99 bei der Hausbank.", "value": "DE75 5121 0800 1245 1261 99"}
+{"type": "IBAN_CODE", "text": "Lastschrift von DE02120300000000202051 eingezogen.", "value": "DE02120300000000202051"}
+{"type": "IBAN_CODE", "text": "Erstattung auf DE02 1001 0010 0006 8201 01 veranlasst.", "value": "DE02 1001 0010 0006 8201 01"}
+{"type": "IBAN_CODE", "text": "Spendenkonto DE02 3002 0900 0106 5310 65 der Muster GmbH.", "value": "DE02 3002 0900 0106 5310 65"}
+{"type": "IBAN_CODE", "text": "Oesterreichisches Konto AT61 1904 3002 3457 3201 angegeben.", "value": "AT61 1904 3002 3457 3201"}
+{"type": "IBAN_CODE", "text": "Schweizer IBAN CH93 0076 2011 6238 5295 7 fuer die Zahlung.", "value": "CH93 0076 2011 6238 5295 7"}
+{"type": "IBAN_CODE", "text": "Franzoesisches Konto FR76 3000 6000 0112 3456 7890 189 hinterlegt.", "value": "FR76 3000 6000 0112 3456 7890 189"}
+{"type": "IBAN_CODE", "text": "Britische Bankverbindung GB29 NWBK 6016 1331 9268 19 genannt.", "value": "GB29 NWBK 6016 1331 9268 19"}
+{"type": "IBAN_CODE", "text": "Niederlaendisch: NL91 ABNA 0417 1643 00 als Referenz.", "value": "NL91 ABNA 0417 1643 00"}
+{"type": "IBAN_CODE", "text": "Spanisches Konto ES91 2100 0418 4502 0005 1332 vermerkt.", "value": "ES91 2100 0418 4502 0005 1332"}
+{"type": "IBAN_CODE", "text": "Belgische IBAN BE68 5390 0754 7034 angegeben.", "value": "BE68 5390 0754 7034"}
+{"type": "IBAN_CODE", "text": "Italienisches Konto IT60 X054 2811 1010 0000 0123 456 erfasst.", "value": "IT60 X054 2811 1010 0000 0123 456"}
+{"type": "IBAN_CODE", "text": "Polnische Bankverbindung PL61 1090 1014 0000 0712 1981 2874 genannt.", "value": "PL61 1090 1014 0000 0712 1981 2874"}
+{"type": "IBAN_CODE", "text": "Daenisches Konto DK50 0040 0440 1162 43 verwendet.", "value": "DK50 0040 0440 1162 43"}
+{"type": "IBAN_CODE", "text": "Norwegische IBAN NO93 8601 1117 947 angegeben.", "value": "NO93 8601 1117 947"}
+{"type": "IBAN_CODE", "text": "Luxemburger Konto LU28 0019 4006 4475 0000 hinterlegt.", "value": "LU28 0019 4006 4475 0000"}
+{"type": "PHONE_NUMBER", "text": "Erreichbar unter +49 30 12345678 im Buero.", "value": "+49 30 12345678"}
+{"type": "PHONE_NUMBER", "text": "Mobil unter 0151 23456789 zu erreichen.", "value": "0151 23456789"}
+{"type": "PHONE_NUMBER", "text": "Tel. 089 1234567 in der Zentrale.", "value": "089 1234567"}
+{"type": "PHONE_NUMBER", "text": "Festnetz 0211/8765432 im Sekretariat.", "value": "0211/8765432"}
+{"type": "PHONE_NUMBER", "text": "Notfallnummer 0800 1234567 rund um die Uhr.", "value": "0800 1234567"}
+{"type": "PHONE_NUMBER", "text": "Durchwahl 030 1234567-89 erreichbar.", "value": "030 1234567-89"}
+{"type": "PHONE_NUMBER", "text": "Faxnummer 040.7654321 angegeben.", "value": "040.7654321"}
+{"type": "PHONE_NUMBER", "text": "Handy 0170 1234567 fuer Rueckfragen.", "value": "0170 1234567"}
+{"type": "PHONE_NUMBER", "text": "Internationale Nummer +49 89 998877 in Muenchen.", "value": "+49 89 998877"}
+{"type": "PHONE_NUMBER", "text": "Britischer Anschluss +44 20 7946 0958 in London.", "value": "+44 20 7946 0958"}
+{"type": "PHONE_NUMBER", "text": "Schweizer Nummer +41 44 668 18 00 in Zuerich.", "value": "+41 44 668 18 00"}
+{"type": "PHONE_NUMBER", "text": "Franzoesischer Kontakt +33 1 23 45 67 89 in Paris.", "value": "+33 1 23 45 67 89"}
+{"type": "PHONE_NUMBER", "text": "Mit Durchwahl +49 (0)30 1234-567 erreichbar.", "value": "+49 (0)30 1234-567"}
+{"type": "PHONE_NUMBER", "text": "Telefon +43 1 5350360 in Wien.", "value": "+43 1 5350360"}
+{"type": "PHONE_NUMBER", "text": "Niederlande +31 20 7948000 als Zentrale.", "value": "+31 20 7948000"}
+{"type": "PHONE_NUMBER", "text": "Hotline 0931 7654321 im Support.", "value": "0931 7654321"}
+{"type": "PHONE_NUMBER", "text": "Rufnummer 0228 9876543 im Amt.", "value": "0228 9876543"}
+{"type": "PHONE_NUMBER", "text": "Servicenummer 069 12345678 in Frankfurt.", "value": "069 12345678"}
+{"type": "DE_TAX_ID", "text": "Steuer-ID 12 345 678 901 beim Finanzamt hinterlegt.", "value": "12 345 678 901"}
+{"type": "DE_TAX_ID", "text": "Meine Steueridentifikationsnummer lautet 23456789012 fuer die Erklaerung.", "value": "23456789012"}
+{"type": "DE_TAX_ID", "text": "Identifikationsnummer 86 095 742 719 als TIN angegeben.", "value": "86 095 742 719"}
+{"type": "DE_TAX_ID", "text": "Die steuerliche Identifikationsnummer 45 678 901 234 ist vermerkt.", "value": "45 678 901 234"}
+{"type": "DE_TAX_ID", "text": "Finanzamt-Steuer-ID 67 890 123 456 erfasst.", "value": "67 890 123 456"}
+{"type": "DE_TAX_ID", "text": "TIN 34567890123 fuer die Lohnabrechnung genutzt.", "value": "34567890123"}
+{"type": "DE_TAX_ID", "text": "Steueridentifikationsnummer: 78 901 234 567 hinterlegt.", "value": "78 901 234 567"}
+{"type": "DE_TAX_ID", "text": "Identifikationsnummer 90 123 456 789 dem Finanzamt gemeldet.", "value": "90 123 456 789"}
+{"type": "DE_TAX_ID", "text": "Steuer-ID 11 222 333 444 in den Unterlagen.", "value": "11 222 333 444"}
+{"type": "DE_TAX_ID", "text": "Die Steuer-ID 55 666 777 888 wurde uebermittelt.", "value": "55 666 777 888"}
+{"type": "DE_TAX_ID", "text": "TIN: 22 333 444 555 fuer das Finanzamt.", "value": "22 333 444 555"}
+{"type": "DE_TAX_ID", "text": "Steueridentifikationsnummer 99 888 777 666 angegeben.", "value": "99 888 777 666"}
+{"type": "DE_TAX_ID", "text": "Identifikationsnummer 13 579 246 801 fuer die Steuer.", "value": "13 579 246 801"}
+{"type": "DE_TAX_ID", "text": "Steuer-ID 24 680 135 792 beim Finanzamt registriert.", "value": "24 680 135 792"}
+{"type": "DE_TAX_ID", "text": "Persoenliche Steuer-ID 31 415 926 535 hinterlegt.", "value": "31 415 926 535"}
+{"type": "DE_TAX_ID", "text": "TIN 27 182 818 284 dem Finanzamt mitgeteilt.", "value": "27 182 818 284"}
+{"type": "DE_SOCIAL_SECURITY", "text": "SV-Nr 65 170839 M 003 der Rentenversicherung.", "value": "65 170839 M 003"}
+{"type": "DE_SOCIAL_SECURITY", "text": "Sozialversicherungsnummer 15070649C103 erfasst.", "value": "15070649C103"}
+{"type": "DE_SOCIAL_SECURITY", "text": "Rentenversicherungsnummer 53 270452 W 502 angegeben.", "value": "53 270452 W 502"}
+{"type": "DE_SOCIAL_SECURITY", "text": "Die Sozialversicherungsnr 12 150380 K 456 ist vermerkt.", "value": "12 150380 K 456"}
+{"type": "DE_SOCIAL_SECURITY", "text": "SV-Nummer 78 010190 B 789 der Krankenkasse gemeldet.", "value": "78 010190 B 789"}
+{"type": "DE_SOCIAL_SECURITY", "text": "Sozialversicherung 34 251175 T 234 hinterlegt.", "value": "34 251175 T 234"}
+{"type": "DE_SOCIAL_SECURITY", "text": "Rentenversicherungsnummer 90 120565 P 012 angegeben.", "value": "90 120565 P 012"}
+{"type": "DE_SOCIAL_SECURITY", "text": "Versicherungsnummer 21 030288 H 345 der DRV.", "value": "21 030288 H 345"}
+{"type": "DE_SOCIAL_SECURITY", "text": "SV-Nr. 47 110493 G 678 in der Akte.", "value": "47 110493 G 678"}
+{"type": "DE_SOCIAL_SECURITY", "text": "Sozialversicherungsnummer 58 220782 R 901 vermerkt.", "value": "58 220782 R 901"}
+{"type": "DE_SOCIAL_SECURITY", "text": "SV 63 091277 N 567 der Rentenversicherung.", "value": "63 091277 N 567"}
+{"type": "DE_SOCIAL_SECURITY", "text": "Sozialversicherungsnr 19 140698 D 123 angegeben.", "value": "19 140698 D 123"}
+{"type": "DE_SOCIAL_SECURITY", "text": "Rentenversicherung 72 251064 S 890 gemeldet.", "value": "72 251064 S 890"}
+{"type": "DE_SOCIAL_SECURITY", "text": "SV-Nr 84 070391 F 432 in den Lohnunterlagen.", "value": "84 070391 F 432"}
+{"type": "DE_SOCIAL_SECURITY", "text": "Sozialversicherungsnummer 26 180584 L 765 erfasst.", "value": "26 180584 L 765"}
+{"type": "DE_SOCIAL_SECURITY", "text": "Versicherungsnummer 39 300995 Z 210 der Krankenkasse.", "value": "39 300995 Z 210"}
+{"type": "DE_ID_CARD", "text": "Personalausweis-Nummer L01X00T471 vorgelegt.", "value": "L01X00T471"}
+{"type": "DE_ID_CARD", "text": "Ausweisnummer T22000129D vom Buergeramt erfasst.", "value": "T22000129D"}
+{"type": "DE_ID_CARD", "text": "Mein Personalausweis L1234567X8 ist gueltig.", "value": "L1234567X8"}
+{"type": "DE_ID_CARD", "text": "Die Ausweisnummer C2345678Y9 wurde geprueft.", "value": "C2345678Y9"}
+{"type": "DE_ID_CARD", "text": "Identitaetsdokument LF1234567D ausgestellt.", "value": "LF1234567D"}
+{"type": "DE_ID_CARD", "text": "Personalausweis-Nr T01234567K hinterlegt.", "value": "T01234567K"}
+{"type": "DE_ID_CARD", "text": "Ausweis LM7654321P im Buergeramt registriert.", "value": "LM7654321P"}
+{"type": "DE_ID_CARD", "text": "Perso-Nummer C09876543T angegeben.", "value": "C09876543T"}
+{"type": "DE_ID_CARD", "text": "Personalausweisnummer LX1112223Z geprueft.", "value": "LX1112223Z"}
+{"type": "DE_ID_CARD", "text": "Ausweisnummer T44455566N vorgelegt.", "value": "T44455566N"}
+{"type": "DE_ID_CARD", "text": "Mein Personalausweis CG3334445R laeuft bald ab.", "value": "CG3334445R"}
+{"type": "DE_ID_CARD", "text": "Identitaetsnachweis L77788899W erbracht.", "value": "L77788899W"}
+{"type": "DE_ID_CARD", "text": "Personalausweis-Nr. T55566677B erfasst.", "value": "T55566677B"}
+{"type": "DE_ID_CARD", "text": "Ausweis-Nummer LP1239871H im System.", "value": "LP1239871H"}
+{"type": "DE_ID_CARD", "text": "Personalausweis CH9871234S vorgelegt.", "value": "CH9871234S"}
+{"type": "DE_ID_CARD", "text": "Die Perso-Nr LT4567891G ist abgelaufen.", "value": "LT4567891G"}
+{"type": "PERSON", "text": "Sehr geehrter Herr Dr. Max Mustermann, wir bestaetigen den Termin.", "value": "Max Mustermann"}
+{"type": "PERSON", "text": "Ansprechpartnerin ist Frau Erika Musterfrau im Sekretariat.", "value": "Erika Musterfrau"}
+{"type": "PERSON", "text": "Prof. Dr. Hans-Peter Mustermann hielt den Vortrag.", "value": "Hans-Peter Mustermann"}
+{"type": "PERSON", "text": "Die Unterschrift von Anna-Lena Musterfrau fehlt noch.", "value": "Anna-Lena Musterfrau"}
+{"type": "PERSON", "text": "Wir begruessen unseren Gast Karl Heinz Mustermann herzlich.", "value": "Karl Heinz Mustermann"}
+{"type": "PERSON", "text": "Geschaeftsfuehrer Maximilian Mustermann unterzeichnete den Vertrag.", "value": "Maximilian Mustermann"}
+{"type": "PERSON", "text": "Kontaktperson ist Dr. Erika Musterfrau-Schmidt im Labor.", "value": "Erika Musterfrau-Schmidt"}
+{"type": "PERSON", "text": "Frau Johanna Mustermann leitet die Abteilung.", "value": "Johanna Mustermann"}
+{"type": "PERSON", "text": "Herr Friedrich Mueller wurde befoerdert.", "value": "Friedrich Mueller"}
+{"type": "PERSON", "text": "Die Bewerbung von Sophie Musterfrau liegt vor.", "value": "Sophie Musterfrau"}
+{"type": "PERSON", "text": "Vorgesetzter Thomas Mustermann genehmigte den Urlaub.", "value": "Thomas Mustermann"}
+{"type": "PERSON", "text": "Frau Katharina Musterfrau hat angerufen.", "value": "Katharina Musterfrau"}
+{"type": "PERSON", "text": "Der Antrag von Sebastian Mustermann wurde bewilligt.", "value": "Sebastian Mustermann"}
+{"type": "PERSON", "text": "Ich uebergebe an meine Kollegin Lena Musterfrau.", "value": "Lena Musterfrau"}
+{"type": "PERSON", "text": "Herr Alexander Mustermann ist heute im Homeoffice.", "value": "Alexander Mustermann"}
+{"type": "PERSON", "text": "Frau Dr. Christina Musterfrau leitet das Projekt.", "value": "Christina Musterfrau"}
+{"type": "ORGANIZATION", "text": "Die Muster GmbH stellt neue Mitarbeiter ein.", "value": "Muster GmbH"}
+{"type": "ORGANIZATION", "text": "Unser Partner Beispiel AG expandiert nach Sueden.", "value": "Beispiel AG"}
+{"type": "ORGANIZATION", "text": "Die Mustermann UG haftet beschraenkt.", "value": "Mustermann UG"}
+{"type": "ORGANIZATION", "text": "Lieferant ist die Beispiel KG aus Hamburg.", "value": "Beispiel KG"}
+{"type": "ORGANIZATION", "text": "Die Muster gGmbH betreibt die Einrichtung.", "value": "Muster gGmbH"}
+{"type": "ORGANIZATION", "text": "Vertragspartner ist die Beispiel SE europaweit.", "value": "Beispiel SE"}
+{"type": "ORGANIZATION", "text": "Die Muster OHG fuehrt das Geschaeft fort.", "value": "Muster OHG"}
+{"type": "ORGANIZATION", "text": "Wir kooperieren mit der Beispiel mbH dauerhaft.", "value": "Beispiel mbH"}
+{"type": "ORGANIZATION", "text": "Die Weber und Klein GmbH stellte die Rechnung.", "value": "Weber und Klein GmbH"}
+{"type": "ORGANIZATION", "text": "Das Beispiel Institut fuer Forschung publiziert Studien.", "value": "Beispiel Institut fuer Forschung"}
+{"type": "ORGANIZATION", "text": "Der Muster Verein zu Berlin laedt zur Versammlung.", "value": "Muster Verein zu Berlin"}
+{"type": "ORGANIZATION", "text": "Die Beispiel Stiftung fuer Bildung foerdert Schueler.", "value": "Beispiel Stiftung fuer Bildung"}
+{"type": "ORGANIZATION", "text": "Die Muster e.V. organisiert das Sommerfest.", "value": "Muster e.V."}
+{"type": "ORGANIZATION", "text": "Wir beziehen Ware von der Beispiel Ltd. aus London.", "value": "Beispiel Ltd."}
+{"type": "ORGANIZATION", "text": "Die Muster Inc. ist in den USA registriert.", "value": "Muster Inc."}
+{"type": "ORGANIZATION", "text": "Der Beispiel Verband der Industrie tagte gestern.", "value": "Beispiel Verband der Industrie"}
+{"type": "EMAIL_ADDRESS", "text": "Schreiben Sie an max.mustermann@example.com fuer Auskunft.", "value": "max.mustermann@example.com"}
+{"type": "EMAIL_ADDRESS", "text": "Antworten bitte an erika.musterfrau@example.org senden.", "value": "erika.musterfrau@example.org"}
+{"type": "EMAIL_ADDRESS", "text": "Support erreichen Sie unter info@muster.example.com jederzeit.", "value": "info@muster.example.com"}
+{"type": "EMAIL_ADDRESS", "text": "Bewerbungen an jobs@beispiel.example.net richten.", "value": "jobs@beispiel.example.net"}
+{"type": "EMAIL_ADDRESS", "text": "Die Adresse max.mustermann+job@mail.example.com nutzen.", "value": "max.mustermann+job@mail.example.com"}
+{"type": "EMAIL_ADDRESS", "text": "Newsletter ueber news+abo@example.com abonnieren.", "value": "news+abo@example.com"}
+{"type": "EMAIL_ADDRESS", "text": "Kontakt: kontakt@support.muster.example.org genannt.", "value": "kontakt@support.muster.example.org"}
+{"type": "EMAIL_ADDRESS", "text": "Rechnungen an buchhaltung@example.de senden.", "value": "buchhaltung@example.de"}
+{"type": "EMAIL_ADDRESS", "text": "Frau Musterfrau nutzt e.musterfrau@example.co.uk dienstlich.", "value": "e.musterfrau@example.co.uk"}
+{"type": "EMAIL_ADDRESS", "text": "Die Mail m.mustermann@dept.example.com wurde angelegt.", "value": "m.mustermann@dept.example.com"}
+{"type": "EMAIL_ADDRESS", "text": "Beschwerden an feedback+2026@example.com richten.", "value": "feedback+2026@example.com"}
+{"type": "EMAIL_ADDRESS", "text": "Technik erreichbar unter it-support@example.com taeglich.", "value": "it-support@example.com"}
+{"type": "EMAIL_ADDRESS", "text": "Die Adresse vorname.nachname@sub.example.org gilt intern.", "value": "vorname.nachname@sub.example.org"}
+{"type": "EMAIL_ADDRESS", "text": "Anfragen an presse@muster-gmbh.example.com stellen.", "value": "presse@muster-gmbh.example.com"}
+{"type": "EMAIL_ADDRESS", "text": "Bestellungen ueber order+web@shop.example.net moeglich.", "value": "order+web@shop.example.net"}
+{"type": "EMAIL_ADDRESS", "text": "Direkt an max@example.com schreiben.", "value": "max@example.com"}
+{"type": "LOCATION", "text": "Wohnhaft Musterstrasse 1 in der Innenstadt.", "value": "Musterstrasse 1"}
+{"type": "LOCATION", "text": "Die Anschrift lautet Musterallee 42a im Norden.", "value": "Musterallee 42a"}
+{"type": "LOCATION", "text": "Buero im Musterweg 7 erreichbar.", "value": "Musterweg 7"}
+{"type": "LOCATION", "text": "Treffpunkt am Musterplatz 3 vereinbart.", "value": "Musterplatz 3"}
+{"type": "LOCATION", "text": "Die Filiale liegt am Musterring 12 zentral.", "value": "Musterring 12"}
+{"type": "LOCATION", "text": "Zustellung an die Beispielgasse 5 erfolgt.", "value": "Beispielgasse 5"}
+{"type": "LOCATION", "text": "Adresse: Musterdamm 88 am Stadtrand.", "value": "Musterdamm 88"}
+{"type": "LOCATION", "text": "Die Postleitzahl 10115 Berlin ist hinterlegt.", "value": "10115 Berlin"}
+{"type": "LOCATION", "text": "Versand nach 80331 Muenchen vorgesehen.", "value": "80331 Muenchen"}
+{"type": "LOCATION", "text": "Der Standort 20095 Hamburg wurde gewaehlt.", "value": "20095 Hamburg"}
+{"type": "LOCATION", "text": "Unser Sitz ist in Musterhausen ohne weitere Angabe.", "value": "Musterhausen"}
+{"type": "LOCATION", "text": "Die Konferenz findet in Berlin statt.", "value": "Berlin"}
+{"type": "LOCATION", "text": "Geliefert wird nach Frankfurt am Main.", "value": "Frankfurt"}
+{"type": "LOCATION", "text": "Das Werk steht in Stuttgart im Sueden.", "value": "Stuttgart"}
+{"type": "LOCATION", "text": "Anschrift Musterstrasse 1, 10115 Berlin angegeben.", "value": "Musterstrasse 1"}
+{"type": "LOCATION", "text": "Die Niederlassung befindet sich in Koeln.", "value": "Koeln"}
+{"type": "URL", "text": "Mehr Informationen unter https://www.example.com/pfad?q=1 abrufbar.", "value": "https://www.example.com/pfad?q=1"}
+{"type": "URL", "text": "Besuchen Sie http://example.org fuer Details.", "value": "http://example.org"}
+{"type": "URL", "text": "Die Seite www.example.org liefert Hintergruende.", "value": "www.example.org"}
+{"type": "URL", "text": "Download unter https://files.example.com/report.pdf verfuegbar.", "value": "https://files.example.com/report.pdf"}
+{"type": "URL", "text": "Login ueber https://app.example.com/login moeglich.", "value": "https://app.example.com/login"}
+{"type": "URL", "text": "Das Portal https://portal.muster.example.com ist online.", "value": "https://portal.muster.example.com"}
+{"type": "URL", "text": "Siehe https://www.example.com/blog/2026/artikel fuer mehr.", "value": "https://www.example.com/blog/2026/artikel"}
+{"type": "URL", "text": "Die API liegt unter https://api.example.com/v1/users bereit.", "value": "https://api.example.com/v1/users"}
+{"type": "URL", "text": "Webseite http://www.beispiel.example.net besuchen.", "value": "http://www.beispiel.example.net"}
+{"type": "URL", "text": "Shop unter https://shop.example.com/produkte?id=42 erreichbar.", "value": "https://shop.example.com/produkte?id=42"}
+{"type": "URL", "text": "Doku auf https://docs.example.org/guide#start nachlesbar.", "value": "https://docs.example.org/guide#start"}
+{"type": "URL", "text": "Die Landingpage www.muster-gmbh.example.com bewerben.", "value": "www.muster-gmbh.example.com"}
+{"type": "URL", "text": "Verweis auf https://example.com/kontakt im Impressum.", "value": "https://example.com/kontakt"}
+{"type": "URL", "text": "Status unter https://status.example.com einsehbar.", "value": "https://status.example.com"}
+{"type": "URL", "text": "Die Subdomain https://intranet.example.org ist intern.", "value": "https://intranet.example.org"}
+{"type": "URL", "text": "Profil unter https://www.example.net/user/max abrufbar.", "value": "https://www.example.net/user/max"}
+{"type": "IP_ADDRESS", "text": "Der Server hat die IP 192.168.10.25 im internen Netz.", "value": "192.168.10.25"}
+{"type": "IP_ADDRESS", "text": "Gateway unter 10.0.0.1 konfiguriert.", "value": "10.0.0.1"}
+{"type": "IP_ADDRESS", "text": "Die Adresse 172.16.254.3 ist vergeben.", "value": "172.16.254.3"}
+{"type": "IP_ADDRESS", "text": "DNS-Server 8.8.8.8 eingetragen.", "value": "8.8.8.8"}
+{"type": "IP_ADDRESS", "text": "Loopback 127.0.0.1 fuer lokale Tests.", "value": "127.0.0.1"}
+{"type": "IP_ADDRESS", "text": "Der Host 203.0.113.45 antwortet nicht.", "value": "203.0.113.45"}
+{"type": "IP_ADDRESS", "text": "Firewall blockt 198.51.100.7 dauerhaft.", "value": "198.51.100.7"}
+{"type": "IP_ADDRESS", "text": "Die Schnittstelle 10.10.10.10 ist aktiv.", "value": "10.10.10.10"}
+{"type": "IP_ADDRESS", "text": "Broadcast 192.168.1.255 im Subnetz.", "value": "192.168.1.255"}
+{"type": "IP_ADDRESS", "text": "Der Proxy 172.31.0.1 leitet Anfragen weiter.", "value": "172.31.0.1"}
+{"type": "IP_ADDRESS", "text": "IPv6-Adresse 2001:0db8:85a3:0000:0000:8a2e:0370:7334 vergeben.", "value": "2001:0db8:85a3:0000:0000:8a2e:0370:7334"}
+{"type": "IP_ADDRESS", "text": "Kurzform 2001:db8::8a2e:370:7334 ebenfalls gueltig.", "value": "2001:db8::8a2e:370:7334"}
+{"type": "IP_ADDRESS", "text": "Der Knoten 192.0.2.146 wurde gescannt.", "value": "192.0.2.146"}
+{"type": "IP_ADDRESS", "text": "Adresse 10.1.2.3 dem Geraet zugewiesen.", "value": "10.1.2.3"}
+{"type": "IP_ADDRESS", "text": "Der Drucker hat 192.168.0.50 im LAN.", "value": "192.168.0.50"}
+{"type": "IP_ADDRESS", "text": "Monitoring von 198.51.100.200 aktiv.", "value": "198.51.100.200"}
+{"type": "CREDIT_CARD", "text": "Zahlung mit Karte 4111 1111 1111 1111 abgewickelt.", "value": "4111 1111 1111 1111"}
+{"type": "CREDIT_CARD", "text": "Die Kartennummer 4111111111111111 wurde belastet.", "value": "4111111111111111"}
+{"type": "CREDIT_CARD", "text": "Mastercard 5500 0055 5555 5559 hinterlegt.", "value": "5500 0055 5555 5559"}
+{"type": "CREDIT_CARD", "text": "Karte 5105 1051 0510 5100 fuer das Abo.", "value": "5105 1051 0510 5100"}
+{"type": "CREDIT_CARD", "text": "Amex 3400 000000 00009 verwendet.", "value": "3400 000000 00009"}
+{"type": "CREDIT_CARD", "text": "Discover 6011 0009 9013 9424 angegeben.", "value": "6011 0009 9013 9424"}
+{"type": "CREDIT_CARD", "text": "Visa 4012 8888 8888 1881 belastet.", "value": "4012 8888 8888 1881"}
+{"type": "CREDIT_CARD", "text": "Mastercard 5555 5555 5555 4444 erfasst.", "value": "5555 5555 5555 4444"}
+{"type": "CREDIT_CARD", "text": "Karte 4000 0566 5566 5556 fuer die Buchung.", "value": "4000 0566 5566 5556"}
+{"type": "CREDIT_CARD", "text": "Amex 3782 822463 10005 hinterlegt.", "value": "3782 822463 10005"}
+{"type": "CREDIT_CARD", "text": "Discover 6011 1111 1111 1117 verwendet.", "value": "6011 1111 1111 1117"}
+{"type": "CREDIT_CARD", "text": "JCB 3530 1113 3330 0000 angegeben.", "value": "3530 1113 3330 0000"}
+{"type": "CREDIT_CARD", "text": "Mastercard 5200 8282 8282 8210 belastet.", "value": "5200 8282 8282 8210"}
+{"type": "CREDIT_CARD", "text": "Visa 4263 9826 4026 9299 fuer die Zahlung.", "value": "4263 9826 4026 9299"}
+{"type": "CREDIT_CARD", "text": "Die Karte 4111-1111-1111-1111 mit Bindestrichen.", "value": "4111-1111-1111-1111"}
+{"type": "CREDIT_CARD", "text": "Kreditkarte 5500005555555559 ohne Trennzeichen.", "value": "5500005555555559"}

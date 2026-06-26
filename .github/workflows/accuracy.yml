@@ -1,0 +1,56 @@
+name: accuracy-eval
+
+# Gates every PR (and pushes to main) on the Shield accuracy suite.
+# The suite under benchmarks/eval/ replaces the single inflated benchmark with
+# span-exact, real-FP-counting phases. run_all.py exits non-zero ONLY when a
+# hard gate REGRESSES; known-open defects are xfail and stay green.
+
+on:
+  pull_request:
+    paths:
+      - "app/**"
+      - "benchmarks/**"
+      - "tests/**"
+      - "requirements.txt"
+      - ".github/workflows/accuracy.yml"
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+jobs:
+  accuracy:
+    name: accuracy suite (span-exact, real FP)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Install spaCy German model (de_core_news_lg)
+        run: python -m spacy download de_core_news_lg
+
+      - name: Run accuracy suite (run_all)
+        run: python benchmarks/eval/run_all.py
+
+      - name: Run full pytest suite
+        run: python -m pytest tests/ -q
+
+      - name: Upload accuracy baselines
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: accuracy-baselines
+          path: benchmarks/eval/baselines/*.json
+          if-no-files-found: warn

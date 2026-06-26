@@ -1,0 +1,380 @@
+{
+  "cv_synthetic": {
+    "coverage_rate": 0.8718,
+    "gold_spans": 39,
+    "lenient_type": {
+      "f1": 0.7711,
+      "fn": 7,
+      "fp": 12,
+      "precision": 0.7273,
+      "recall": 0.8205,
+      "tp": 32
+    },
+    "official_inflated": {
+      "precision": 1.0,
+      "recall": 0.93
+    },
+    "parsed_blocks": 65,
+    "sample_false_positives": [
+      [
+        "LOCATION",
+        "60313 Frankfurt"
+      ],
+      [
+        "PERSON",
+        "BYLADEM1001"
+      ],
+      [
+        "PHONE_NUMBER",
+        "07/2013 – 02/2018"
+      ],
+      [
+        "PHONE_NUMBER",
+        "09/2010 – 06/2013"
+      ],
+      [
+        "LOCATION",
+        "Aufbau"
+      ],
+      [
+        "ORGANIZATION",
+        "Ausbildung bei der Deutsche Telekom AG"
+      ],
+      [
+        "PHONE_NUMBER",
+        "09/2007 – 07/2010"
+      ],
+      [
+        "LOCATION",
+        "Frankfurt am Main"
+      ],
+      [
+        "PHONE_NUMBER",
+        "02947381"
+      ],
+      [
+        "ORGANIZATION",
+        "Rheinland Universitätsklinikum GmbH"
+      ],
+      [
+        "ORGANIZATION",
+        "DataCore Systems AG"
+      ],
+      [
+        "LOCATION",
+        "Frankfurt am Main"
+      ]
+    ],
+    "strict": {
+      "f1": 0.7711,
+      "fn": 7,
+      "fp": 12,
+      "precision": 0.7273,
+      "recall": 0.8205,
+      "tp": 32
+    },
+    "strict_false_negatives_count": 7,
+    "strict_false_positives_count": 12,
+    "text_len": 3148,
+    "unlocated_expected": []
+  },
+  "gates": {
+    "all_pass": true,
+    "clean_fp_is_zero": {
+      "measured_fp": 0,
+      "pass": true
+    },
+    "cv_f1_floor": {
+      "f1": 0.7711,
+      "floor": 0.7511,
+      "pass": true
+    },
+    "gold_f1_floor": {
+      "f1": 0.7568,
+      "floor": 0.7368,
+      "pass": true
+    }
+  },
+  "gold": {
+    "clean_fp": 0,
+    "coverage_rate": 0.8947,
+    "leaks": [
+      {
+        "doc": "g06_org_city",
+        "missed": [
+          [
+            "ORGANIZATION",
+            25,
+            36
+          ]
+        ]
+      },
+      {
+        "doc": "g07_id_card",
+        "missed": [
+          [
+            "DE_ID_CARD",
+            35,
+            44
+          ]
+        ]
+      },
+      {
+        "doc": "g08_two_persons_org",
+        "missed": [
+          [
+            "PERSON",
+            25,
+            39
+          ],
+          [
+            "PERSON",
+            44,
+            60
+          ],
+          [
+            "ORGANIZATION",
+            76,
+            87
+          ]
+        ]
+      }
+    ],
+    "lenient_type": {
+      "f1": 0.7568,
+      "fn": 5,
+      "fp": 4,
+      "precision": 0.7778,
+      "recall": 0.7368,
+      "tp": 14
+    },
+    "mode": "balanced",
+    "over_redactions": [
+      {
+        "doc": "g03_iban",
+        "spurious": [
+          [
+            "LOCATION",
+            "Ueberweisen"
+          ]
+        ]
+      },
+      {
+        "doc": "g05_person_url",
+        "spurious": [
+          [
+            "LOCATION",
+            "Frau"
+          ]
+        ]
+      },
+      {
+        "doc": "g06_org_city",
+        "spurious": [
+          [
+            "ORGANIZATION",
+            "Den Auftrag erteilte die Muster GmbH"
+          ]
+        ]
+      },
+      {
+        "doc": "g08_two_persons_org",
+        "spurious": [
+          [
+            "ORGANIZATION",
+            "Mustermann und Erika Musterfrau im Auftrag der Beispiel AG"
+          ]
+        ]
+      }
+    ],
+    "per_doc": [
+      {
+        "coverage": 1.0,
+        "gold": 3,
+        "id": "g01_person_email_phone",
+        "lenient_f1": 1.0,
+        "pii_free": false,
+        "strict": {
+          "f1": 1.0,
+          "fn": 0,
+          "fp": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tp": 3
+        }
+      },
+      {
+        "coverage": 1.0,
+        "gold": 2,
+        "id": "g02_address",
+        "lenient_f1": 1.0,
+        "pii_free": false,
+        "strict": {
+          "f1": 1.0,
+          "fn": 0,
+          "fp": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tp": 2
+        }
+      },
+      {
+        "coverage": 1.0,
+        "gold": 1,
+        "id": "g03_iban",
+        "lenient_f1": 0.6667,
+        "pii_free": false,
+        "strict": {
+          "f1": 0.6667,
+          "fn": 0,
+          "fp": 1,
+          "precision": 0.5,
+          "recall": 1.0,
+          "tp": 1
+        }
+      },
+      {
+        "coverage": 1.0,
+        "gold": 2,
+        "id": "g04_taxid_ssn",
+        "lenient_f1": 1.0,
+        "pii_free": false,
+        "strict": {
+          "f1": 1.0,
+          "fn": 0,
+          "fp": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tp": 2
+        }
+      },
+      {
+        "coverage": 1.0,
+        "gold": 2,
+        "id": "g05_person_url",
+        "lenient_f1": 0.8,
+        "pii_free": false,
+        "strict": {
+          "f1": 0.8,
+          "fn": 0,
+          "fp": 1,
+          "precision": 0.6667,
+          "recall": 1.0,
+          "tp": 2
+        }
+      },
+      {
+        "coverage": 1.0,
+        "gold": 2,
+        "id": "g06_org_city",
+        "lenient_f1": 0.5,
+        "pii_free": false,
+        "strict": {
+          "f1": 0.5,
+          "fn": 1,
+          "fp": 1,
+          "precision": 0.5,
+          "recall": 0.5,
+          "tp": 1
+        }
+      },
+      {
+        "coverage": 0.0,
+        "gold": 1,
+        "id": "g07_id_card",
+        "lenient_f1": 0.0,
+        "pii_free": false,
+        "strict": {
+          "f1": 0.0,
+          "fn": 1,
+          "fp": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "tp": 0
+        }
+      },
+      {
+        "coverage": 0.6667,
+        "gold": 3,
+        "id": "g08_two_persons_org",
+        "lenient_f1": 0.0,
+        "pii_free": false,
+        "strict": {
+          "f1": 0.0,
+          "fn": 3,
+          "fp": 1,
+          "precision": 0.0,
+          "recall": 0.0,
+          "tp": 0
+        }
+      },
+      {
+        "coverage": 1.0,
+        "gold": 3,
+        "id": "g09_contact_block",
+        "lenient_f1": 1.0,
+        "pii_free": false,
+        "strict": {
+          "f1": 1.0,
+          "fn": 0,
+          "fp": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tp": 3
+        }
+      },
+      {
+        "coverage": 1.0,
+        "gold": 0,
+        "id": "g10_clean_a",
+        "lenient_f1": 0.0,
+        "pii_free": true,
+        "strict": {
+          "f1": 0.0,
+          "fn": 0,
+          "fp": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "tp": 0
+        }
+      },
+      {
+        "coverage": 1.0,
+        "gold": 0,
+        "id": "g11_clean_b",
+        "lenient_f1": 0.0,
+        "pii_free": true,
+        "strict": {
+          "f1": 0.0,
+          "fn": 0,
+          "fp": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "tp": 0
+        }
+      }
+    ],
+    "strict": {
+      "f1": 0.7568,
+      "fn": 5,
+      "fp": 4,
+      "precision": 0.7778,
+      "recall": 0.7368,
+      "tp": 14
+    }
+  },
+  "gold_corpus_path": "benchmarks/eval/corpus/strict_gold.jsonl",
+  "gold_doc_count": 11,
+  "gold_span_count": 19,
+  "known_open": [
+    "cv_synthetic strict recall 0.8205 is far below the inflated official 0.93 — the official number came from fuzzy substring matching, not span-exact scoring.",
+    "gold leak (PII left in cleartext) in g06_org_city: missed [('ORGANIZATION', 25, 36)]",
+    "gold leak (PII left in cleartext) in g07_id_card: missed [('DE_ID_CARD', 35, 44)]",
+    "gold leak (PII left in cleartext) in g08_two_persons_org: missed [('PERSON', 25, 39), ('PERSON', 44, 60), ('ORGANIZATION', 76, 87)]",
+    "gold over-redaction (span-exact FP, non-clean doc) in g03_iban: [('LOCATION', 'Ueberweisen')]",
+    "gold over-redaction (span-exact FP, non-clean doc) in g05_person_url: [('LOCATION', 'Frau')]",
+    "gold over-redaction (span-exact FP, non-clean doc) in g06_org_city: [('ORGANIZATION', 'Den Auftrag erteilte die Muster GmbH')]",
+    "gold over-redaction (span-exact FP, non-clean doc) in g08_two_persons_org: [('ORGANIZATION', 'Mustermann und Erika Musterfrau im Auftrag der Beispiel AG')]"
+  ],
+  "phase": "phase1-strict-scorer"
+}

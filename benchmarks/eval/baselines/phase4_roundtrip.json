@@ -1,0 +1,104 @@
+{
+  "all_pass": true,
+  "corpus": "eval/corpus/roundtrip.jsonl",
+  "doc_count": 15,
+  "doc_key": "phase4-roundtrip-doc-key",
+  "gates": {
+    "balanced:known_open_not_grown": true,
+    "balanced:no_collisions": true,
+    "balanced:no_new_residual_leaks": true,
+    "balanced:pseudonym_consistency": true,
+    "compliant:known_open_not_grown": true,
+    "compliant:no_collisions": true,
+    "compliant:no_new_residual_leaks": true,
+    "compliant:pseudonym_consistency": true
+  },
+  "known_open_baseline": [
+    "Beispiel Trading Ltd.",
+    "Beispiel e.V.",
+    "DE00123456780000000000",
+    "L01X00T471",
+    "Mustermann Consulting"
+  ],
+  "modes": {
+    "balanced": {
+      "collision_examples": [],
+      "collisions": 0,
+      "consistency_examples": [],
+      "consistency_violations": 0,
+      "distinct_originals": 18,
+      "distinct_pseudonyms": 18,
+      "docs": 15,
+      "leak_examples": [
+        {
+          "doc": "rt-10-iban-invalid-checksum",
+          "substring": "DE00123456780000000000"
+        },
+        {
+          "doc": "rt-11-org-ev",
+          "substring": "Beispiel e.V."
+        },
+        {
+          "doc": "rt-12-org-ltd",
+          "substring": "Beispiel Trading Ltd."
+        },
+        {
+          "doc": "rt-13-id-card",
+          "substring": "L01X00T471"
+        },
+        {
+          "doc": "rt-14-org-suffixless",
+          "substring": "Mustermann Consulting"
+        }
+      ],
+      "leaks_accepted_known_open": 5,
+      "leaks_new": 0,
+      "leaks_total": 5,
+      "mode": "balanced",
+      "new_leak_examples": [],
+      "new_leak_rate": 0.0,
+      "required_substrings": 24,
+      "residual_leak_rate": 0.2083
+    },
+    "compliant": {
+      "collision_examples": [],
+      "collisions": 0,
+      "consistency_examples": [],
+      "consistency_violations": 0,
+      "distinct_originals": 18,
+      "distinct_pseudonyms": 18,
+      "docs": 15,
+      "leak_examples": [
+        {
+          "doc": "rt-10-iban-invalid-checksum",
+          "substring": "DE00123456780000000000"
+        },
+        {
+          "doc": "rt-11-org-ev",
+          "substring": "Beispiel e.V."
+        },
+        {
+          "doc": "rt-12-org-ltd",
+          "substring": "Beispiel Trading Ltd."
+        },
+        {
+          "doc": "rt-13-id-card",
+          "substring": "L01X00T471"
+        },
+        {
+          "doc": "rt-14-org-suffixless",
+          "substring": "Mustermann Consulting"
+        }
+      ],
+      "leaks_accepted_known_open": 5,
+      "leaks_new": 0,
+      "leaks_total": 5,
+      "mode": "compliant",
+      "new_leak_examples": [],
+      "new_leak_rate": 0.0,
+      "required_substrings": 24,
+      "residual_leak_rate": 0.2083
+    }
+  },
+  "phase": "phase4-roundtrip-leak"
+}

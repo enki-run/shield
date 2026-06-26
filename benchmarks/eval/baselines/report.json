@@ -1,0 +1,117 @@
+{
+  "all_green": true,
+  "components": [
+    {
+      "duration_s": 2.17,
+      "exit_code": 0,
+      "id": "phase1-strict-scorer",
+      "kind": "script",
+      "label": "Phase 1 — strict span-exact scorer",
+      "regressed": false,
+      "target": "benchmarks/eval/phase1_strict_scorer.py"
+    },
+    {
+      "duration_s": 3.46,
+      "exit_code": 0,
+      "id": "phase2-per-type-recall",
+      "kind": "script",
+      "label": "Phase 2 — per-type full-cover recall",
+      "regressed": false,
+      "target": "benchmarks/eval/phase2_per_type_recall.py"
+    },
+    {
+      "duration_s": 2.36,
+      "exit_code": 0,
+      "id": "phase3-fp-stress",
+      "kind": "script",
+      "label": "Phase 3 — false-positive stress on clean docs",
+      "regressed": false,
+      "target": "benchmarks/eval/phase3_fp_stress.py"
+    },
+    {
+      "duration_s": 2.11,
+      "exit_code": 0,
+      "id": "phase4-roundtrip-leak",
+      "kind": "script",
+      "label": "Phase 4 — pseudonymize round-trip leak",
+      "regressed": false,
+      "target": "benchmarks/eval/phase4_roundtrip.py"
+    },
+    {
+      "duration_s": 13.91,
+      "exit_code": 0,
+      "id": "phase5-threshold-sweep",
+      "kind": "script",
+      "label": "Phase 5 — threshold sweep (diagnostic)",
+      "regressed": false,
+      "target": "benchmarks/eval/phase5_threshold_sweep.py"
+    },
+    {
+      "duration_s": 25.26,
+      "exit_code": 0,
+      "id": "phase5-guard",
+      "kind": "pytest",
+      "label": "Phase 5 — pytest regression guard",
+      "pytest": {
+        "error": 0,
+        "failed": 0,
+        "passed": 9,
+        "skipped": 0,
+        "xfailed": 2,
+        "xpassed": 0
+      },
+      "regressed": false,
+      "target": "tests/test_eval_phase5_threshold_sweep.py",
+      "xpass_alert": false
+    },
+    {
+      "duration_s": 8.07,
+      "exit_code": 0,
+      "id": "phase6-dedup-units",
+      "kind": "pytest",
+      "label": "Phase 6 — dedup / determinism unit suite",
+      "pytest": {
+        "error": 0,
+        "failed": 0,
+        "passed": 8,
+        "skipped": 0,
+        "xfailed": 1,
+        "xpassed": 0
+      },
+      "regressed": false,
+      "target": "tests/test_eval_dedup.py",
+      "xpass_alert": false
+    },
+    {
+      "duration_s": 3.28,
+      "exit_code": 0,
+      "id": "accuracy-regressions",
+      "kind": "pytest",
+      "label": "Phase 6 — accuracy-audit regression pins",
+      "pytest": {
+        "error": 0,
+        "failed": 0,
+        "passed": 6,
+        "skipped": 0,
+        "xfailed": 0,
+        "xpassed": 0
+      },
+      "regressed": false,
+      "target": "tests/test_accuracy_regressions.py",
+      "xpass_alert": false
+    }
+  ],
+  "exit_code": 0,
+  "generated_by": "benchmarks/eval/run_all.py",
+  "n_components": 8,
+  "n_regressions": 0,
+  "n_xpass_alerts": 0,
+  "pytest_totals": {
+    "passed": 23,
+    "xfailed": 3
+  },
+  "python": "3.12.9",
+  "regressions": [],
+  "suite": "shield-accuracy-eval",
+  "xpass_alerts": []
+}

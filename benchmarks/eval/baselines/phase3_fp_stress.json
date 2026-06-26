@@ -1,0 +1,693 @@
+{
+  "all_gates_passed": true,
+  "description": "Every detection on PII-free docs is a false positive; FP rate + driver breakdown, balanced & compliant.",
+  "documents": [
+    "invoice_boilerplate.txt",
+    "kpi_metrics_table.txt",
+    "runbook_observability.txt",
+    "sop_change_management.txt"
+  ],
+  "gates": {
+    "denylist_fp_per_1k_ceiling": 45.0,
+    "non_denylist_fp_per_1k_ceiling": 92.0
+  },
+  "known_open": [
+    "Non-denylist tech stack (Kafka/Datadog/Jenkins/Vault/Loki/Prometheus) in runbook_observability.txt spikes spaCy-NER false positives to 88.46 FP/1k (balanced) — residual spaCy NER FP on tech terms + denylist overfitting. Tracked under a loose informational ceiling, not a hard failure.",
+    "spaCy NER mislabels generic capitalized German nouns (Quartal, Vorquartal, Maengel, Auftragsbestaetigung, Umsetzende, Aenderungsantrags) as LOCATION/PERSON even in PII-free boilerplate.",
+    "DE_StreetName regex fires on common nouns ending in street-like suffixes ('Quartal', 'Speicherplatz') without address context -> LOCATION FP."
+  ],
+  "non_denylist_doc": "runbook_observability.txt",
+  "per_document": {
+    "invoice_boilerplate.txt": {
+      "balanced": {
+        "drivers": {
+          "date": 1,
+          "tech_term_to_ner": 4
+        },
+        "false_positives": [
+          [
+            "LOCATION",
+            "Quartal",
+            "date",
+            0.7,
+            "DE_StreetName"
+          ],
+          [
+            "PERSON",
+            "achttausendfuenfhundertsechsundsechzig Euro",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "LOCATION",
+            "Auftragsbestaetigung",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "PERSON",
+            "Maengel",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "LOCATION",
+            "fuenfzig",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ]
+        ],
+        "fp": 5,
+        "fp_per_1k": 22.73,
+        "tokens": 220
+      },
+      "compliant": {
+        "drivers": {
+          "date": 1,
+          "tech_term_to_ner": 4
+        },
+        "false_positives": [
+          [
+            "LOCATION",
+            "Quartal",
+            "date",
+            0.7,
+            "DE_StreetName"
+          ],
+          [
+            "PERSON",
+            "achttausendfuenfhundertsechsundsechzig Euro",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "LOCATION",
+            "Auftragsbestaetigung",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "PERSON",
+            "Maengel",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "LOCATION",
+            "fuenfzig",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ]
+        ],
+        "fp": 5,
+        "fp_per_1k": 22.73,
+        "tokens": 220
+      },
+      "is_non_denylist": false
+    },
+    "kpi_metrics_table.txt": {
+      "balanced": {
+        "drivers": {
+          "date": 2,
+          "tech_term_to_ner": 5
+        },
+        "false_positives": [
+          [
+            "LOCATION",
+            "Quartal",
+            "date",
+            0.7,
+            "DE_StreetName"
+          ],
+          [
+            "LOCATION",
+            "Quartal",
+            "date",
+            0.7,
+            "DE_StreetName"
+          ],
+          [
+            "LOCATION",
+            "Vorquartal",
+            "tech_term_to_ner",
+            0.7,
+            "DE_StreetName"
+          ],
+          [
+            "LOCATION",
+            "Speicherplatz",
+            "tech_term_to_ner",
+            0.7,
+            "DE_StreetName"
+          ],
+          [
+            "LOCATION",
+            "Skalierungsereignisse",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "LOCATION",
+            "Geloeste Tickets",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "LOCATION",
+            "Vorquartal",
+            "tech_term_to_ner",
+            0.7,
+            "DE_StreetName"
+          ]
+        ],
+        "fp": 7,
+        "fp_per_1k": 42.17,
+        "tokens": 166
+      },
+      "compliant": {
+        "drivers": {
+          "date": 2,
+          "tech_term_to_ner": 5
+        },
+        "false_positives": [
+          [
+            "LOCATION",
+            "Quartal",
+            "date",
+            0.7,
+            "DE_StreetName"
+          ],
+          [
+            "LOCATION",
+            "Quartal",
+            "date",
+            0.7,
+            "DE_StreetName"
+          ],
+          [
+            "LOCATION",
+            "Vorquartal",
+            "tech_term_to_ner",
+            0.7,
+            "DE_StreetName"
+          ],
+          [
+            "LOCATION",
+            "Speicherplatz",
+            "tech_term_to_ner",
+            0.7,
+            "DE_StreetName"
+          ],
+          [
+            "LOCATION",
+            "Skalierungsereignisse",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "LOCATION",
+            "Geloeste Tickets",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "LOCATION",
+            "Vorquartal",
+            "tech_term_to_ner",
+            0.7,
+            "DE_StreetName"
+          ]
+        ],
+        "fp": 7,
+        "fp_per_1k": 42.17,
+        "tokens": 166
+      },
+      "is_non_denylist": false
+    },
+    "runbook_observability.txt": {
+      "balanced": {
+        "drivers": {
+          "tech_term_to_ner": 23
+        },
+        "false_positives": [
+          [
+            "LOCATION",
+            "Observability-Plattform",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "LOCATION",
+            "Observability-Plattform",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "LOCATION",
+            "Kafka",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "LOCATION",
+            "Message-Bus",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "LOCATION",
+            "Datadog",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "PERSON",
+            "Jenkins",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "LOCATION",
+            "Secret-Management",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "LOCATION",
+            "Kubernetes",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "PERSON",
+            "Kafka",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "LOCATION",
+            "Datadog Agents scrapen",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "PERSON",
+            "Prometheus",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "PERSON",
+            "Loki ergaenzen",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "PERSON",
+            "Jenkins",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "PERSON",
+            "Jenkins",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "LOCATION",
+            "Datadog Monitore",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "LOCATION",
+            "Jenkins-Agents",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "LOCATION",
+            "Kubernetes-Plugin",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "PERSON",
+            "Loki",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "LOCATION",
+            "Pod-Status ueber kubectl",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "LOCATION",
+            "Datadog",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "PERSON",
+            "Jenkins-Builds haengen",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "LOCATION",
+            "Git-Stand",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "LOCATION",
+            "Datadog",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ]
+        ],
+        "fp": 23,
+        "fp_per_1k": 88.46,
+        "tokens": 260
+      },
+      "compliant": {
+        "drivers": {
+          "tech_term_to_ner": 23
+        },
+        "false_positives": [
+          [
+            "LOCATION",
+            "Observability-Plattform",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "LOCATION",
+            "Observability-Plattform",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "LOCATION",
+            "Kafka",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "LOCATION",
+            "Message-Bus",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "LOCATION",
+            "Datadog",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "PERSON",
+            "Jenkins",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "LOCATION",
+            "Secret-Management",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "LOCATION",
+            "Kubernetes",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "PERSON",
+            "Kafka",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "LOCATION",
+            "Datadog Agents scrapen",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "PERSON",
+            "Prometheus",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "PERSON",
+            "Loki ergaenzen",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "PERSON",
+            "Jenkins",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "PERSON",
+            "Jenkins",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "LOCATION",
+            "Datadog Monitore",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "LOCATION",
+            "Jenkins-Agents",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "LOCATION",
+            "Kubernetes-Plugin",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "PERSON",
+            "Loki",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "LOCATION",
+            "Pod-Status ueber kubectl",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "LOCATION",
+            "Datadog",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "PERSON",
+            "Jenkins-Builds haengen",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "LOCATION",
+            "Git-Stand",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "LOCATION",
+            "Datadog",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ]
+        ],
+        "fp": 23,
+        "fp_per_1k": 88.46,
+        "tokens": 260
+      },
+      "is_non_denylist": true
+    },
+    "sop_change_management.txt": {
+      "balanced": {
+        "drivers": {
+          "tech_term_to_ner": 2
+        },
+        "false_positives": [
+          [
+            "LOCATION",
+            "Aenderungsantrags",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "LOCATION",
+            "Umsetzende",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ]
+        ],
+        "fp": 2,
+        "fp_per_1k": 8.1,
+        "tokens": 247
+      },
+      "compliant": {
+        "drivers": {
+          "tech_term_to_ner": 2
+        },
+        "false_positives": [
+          [
+            "LOCATION",
+            "Aenderungsantrags",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ],
+          [
+            "LOCATION",
+            "Umsetzende",
+            "tech_term_to_ner",
+            0.85,
+            "SpacyRecognizer"
+          ]
+        ],
+        "fp": 2,
+        "fp_per_1k": 8.1,
+        "tokens": 247
+      },
+      "is_non_denylist": false
+    }
+  },
+  "phase": "phase3-fp-stress",
+  "summary": {
+    "modes": {
+      "balanced": {
+        "denylist_covered": {
+          "fp": 14,
+          "fp_per_1k": 22.12,
+          "tokens": 633,
+          "worst_doc": "kpi_metrics_table.txt",
+          "worst_doc_fp_per_1k": 42.17
+        },
+        "driver_totals": {
+          "date": 3,
+          "tech_term_to_ner": 34
+        },
+        "full_corpus": {
+          "fp": 37,
+          "fp_per_1k": 41.43,
+          "tokens": 893,
+          "worst_doc": "runbook_observability.txt",
+          "worst_doc_fp_per_1k": 88.46
+        },
+        "non_denylist_doc": {
+          "doc": "runbook_observability.txt",
+          "fp": 23,
+          "fp_per_1k": 88.46,
+          "tokens": 260
+        }
+      },
+      "compliant": {
+        "denylist_covered": {
+          "fp": 14,
+          "fp_per_1k": 22.12,
+          "tokens": 633,
+          "worst_doc": "kpi_metrics_table.txt",
+          "worst_doc_fp_per_1k": 42.17
+        },
+        "driver_totals": {
+          "date": 3,
+          "tech_term_to_ner": 34
+        },
+        "full_corpus": {
+          "fp": 37,
+          "fp_per_1k": 41.43,
+          "tokens": 893,
+          "worst_doc": "runbook_observability.txt",
+          "worst_doc_fp_per_1k": 88.46
+        },
+        "non_denylist_doc": {
+          "doc": "runbook_observability.txt",
+          "fp": 23,
+          "fp_per_1k": 88.46,
+          "tokens": 260
+        }
+      }
+    }
+  }
+}
