@@ -340,6 +340,23 @@ def _deduplicate_entities(
         return []
 
     type_priority = dedup_config.get("type_priority", {})
+
+    # Collapse exact-duplicate spans first: for an identical [start,end) keep the
+    # most specific type (lowest type_priority), breaking ties by confidence.
+    # This makes a structured type (URL/IBAN/DE_ID_CARD) win an identical span
+    # over a generic NER guess regardless of the NER's confidence — the redaction
+    # stays correctly typed.
+    best_by_span: dict[tuple[int, int], DetectedEntity] = {}
+    for e in entities:
+        key = (e.start, e.end)
+        cur = best_by_span.get(key)
+        if cur is None or (
+            type_priority.get(e.entity_type, 5),
+            -e.confidence,
+        ) < (type_priority.get(cur.entity_type, 5), -cur.confidence):
+            best_by_span[key] = e
+    entities = list(best_by_span.values())
+
     sorted_ents = sorted(
         entities,
         key=lambda e: (-e.confidence, type_priority.get(e.entity_type, 5)),
@@ -352,10 +369,16 @@ def _deduplicate_entities(
         for i, ex in enumerate(kept):
             if not (candidate.start < ex.end and candidate.end > ex.start):
                 continue  # no overlap with this kept span
-            if candidate.start <= ex.start and candidate.end >= ex.end:
-                # Candidate fully contains a narrower kept span: the wider span
-                # redacts more, so it replaces the narrower one — otherwise the
-                # uncovered tail (house number, account digits) leaks.
+            strictly_wider = (candidate.end - candidate.start) > (ex.end - ex.start)
+            if strictly_wider and candidate.start <= ex.start and candidate.end >= ex.end:
+                # Candidate is STRICTLY wider and fully contains a narrower kept
+                # span: the wider span redacts more, so it replaces the narrower
+                # one — otherwise the uncovered tail (house number, account
+                # digits) leaks. On an EQUAL span we fall through to the conflict
+                # branch instead, so the higher-priority structured type already
+                # kept (IBAN_CODE/DE_ID_CARD) is not evicted by a same-span
+                # generic NER fragment (LOCATION/PERSON) — which would mistype
+                # the redaction.
                 contained_idx.append(i)
             else:
                 # Partial overlap, or candidate sits inside an existing span:

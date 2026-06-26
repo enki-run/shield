@@ -121,19 +121,10 @@ def test_structured_de_id_card_survives_overlapping_generic_person_fragment():
     )
 
 
-@pytest.mark.xfail(
-    reason=(
-        "KNOWN-OPEN: the containment branch in _deduplicate_entities has no "
-        "type/priority guard. On an EXACTLY-equal span the later-processed "
-        "generic LOCATION 'contains' (== covers) the structured IBAN_CODE and "
-        "evicts it, so the redaction is mistyped as LOCATION. Real fix: do not "
-        "let an equal-span lower-priority generic type evict a higher-priority "
-        "structured type. Type is preserved today only when the structured span "
-        "is strictly wider than the NER fragment (the common spaCy case)."
-    ),
-    strict=True,
-)
 def test_structured_iban_survives_equal_span_generic_location():
+    # FIXED: the containment branch now replaces only on a STRICTLY wider span,
+    # so an equal-span generic NER fragment no longer evicts the higher-priority
+    # structured type. (was xfail, now a hard assertion)
     iban = _e("IBAN_CODE", "DE89370400440532013000", 20, 42, 0.60, "IbanRecognizer")
     loc = _e("LOCATION", "DE89370400440532013000", 20, 42, 0.60, "SpacyRecognizer")
 
