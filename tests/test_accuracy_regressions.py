@@ -120,3 +120,18 @@ def test_typed_iban_with_invalid_checksum_is_detected():
     # DE + 20 digits: syntactically an IBAN but fails the mod-97 checksum
     ents = det.detect("Bitte auf IBAN DE00 1234 5678 0000 0000 00 ueberweisen.")
     assert "IBAN_CODE" in [e.entity_type for e in ents]
+
+
+@pytest.mark.skipif(not HAS_SPACY, reason=SKIP_MSG)
+def test_org_with_dotted_legal_suffix_is_detected():
+    """Audit defect: e.V./Ltd./Inc. end in '.', and the trailing \\b in the
+    DE_OrgSuffix regex fails right after a dot, so these organizations leak."""
+    from app.pipeline.detector import PiiDetector
+
+    det = PiiDetector(mode="balanced")
+    for txt in (
+        "Mitglied der Beispiel Verein e.V. seit 2020.",
+        "Die Rechnung der Beispiel Trading Ltd. liegt vor.",
+    ):
+        orgs = [e.text for e in det.detect(txt) if e.entity_type == "ORGANIZATION"]
+        assert any("Beispiel" in o for o in orgs), f"dotted-suffix org leaked: {orgs} in {txt!r}"

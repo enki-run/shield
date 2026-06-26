@@ -14,8 +14,6 @@
     "compliant:pseudonym_consistency": true
   },
   "known_open_baseline": [
-    "Beispiel Trading Ltd.",
-    "Beispiel e.V.",
     "L01X00T471",
     "Mustermann Consulting"
   ],
@@ -25,18 +23,10 @@
       "collisions": 0,
       "consistency_examples": [],
       "consistency_violations": 0,
-      "distinct_originals": 19,
-      "distinct_pseudonyms": 19,
+      "distinct_originals": 20,
+      "distinct_pseudonyms": 20,
       "docs": 15,
       "leak_examples": [
-        {
-          "doc": "rt-11-org-ev",
-          "substring": "Beispiel e.V."
-        },
-        {
-          "doc": "rt-12-org-ltd",
-          "substring": "Beispiel Trading Ltd."
-        },
         {
           "doc": "rt-13-id-card",
           "substring": "L01X00T471"
@@ -46,32 +36,24 @@
           "substring": "Mustermann Consulting"
         }
       ],
-      "leaks_accepted_known_open": 4,
+      "leaks_accepted_known_open": 2,
       "leaks_new": 0,
-      "leaks_total": 4,
+      "leaks_total": 2,
       "mode": "balanced",
       "new_leak_examples": [],
       "new_leak_rate": 0.0,
       "required_substrings": 24,
-      "residual_leak_rate": 0.1667
+      "residual_leak_rate": 0.0833
     },
     "compliant": {
       "collision_examples": [],
       "collisions": 0,
       "consistency_examples": [],
       "consistency_violations": 0,
-      "distinct_originals": 19,
-      "distinct_pseudonyms": 19,
+      "distinct_originals": 20,
+      "distinct_pseudonyms": 20,
       "docs": 15,
       "leak_examples": [
-        {
-          "doc": "rt-11-org-ev",
-          "substring": "Beispiel e.V."
-        },
-        {
-          "doc": "rt-12-org-ltd",
-          "substring": "Beispiel Trading Ltd."
-        },
         {
           "doc": "rt-13-id-card",
           "substring": "L01X00T471"
@@ -81,14 +63,14 @@
           "substring": "Mustermann Consulting"
         }
       ],
-      "leaks_accepted_known_open": 4,
+      "leaks_accepted_known_open": 2,
       "leaks_new": 0,
-      "leaks_total": 4,
+      "leaks_total": 2,
       "mode": "compliant",
       "new_leak_examples": [],
       "new_leak_rate": 0.0,
       "required_substrings": 24,
-      "residual_leak_rate": 0.1667
+      "residual_leak_rate": 0.0833
     }
   },
   "phase": "phase4-roundtrip-leak"

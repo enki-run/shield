@@ -13,8 +13,8 @@
       "type": "DE_ID_CARD"
     },
     {
-      "best_any_recall": 0.6875,
-      "best_typed_recall": 0.6875,
+      "best_any_recall": 0.875,
+      "best_typed_recall": 0.875,
       "type": "ORGANIZATION"
     },
     {
@@ -24,8 +24,8 @@
     }
   ],
   "macro_recall_floor": 0.9,
-  "macro_typed_recall_best_mode": 0.9219,
-  "micro_typed_recall_best_mode": 0.9235,
+  "macro_typed_recall_best_mode": 0.9375,
+  "micro_typed_recall_best_mode": 0.9388,
   "modes": [
     "balanced",
     "compliant"
@@ -44,12 +44,12 @@
       "type": "DE_ID_CARD"
     },
     {
-      "balanced_any": 0.6875,
-      "balanced_typed": 0.6875,
-      "best_any": 0.6875,
-      "best_typed": 0.6875,
-      "compliant_any": 0.6875,
-      "compliant_typed": 0.6875,
+      "balanced_any": 0.875,
+      "balanced_typed": 0.875,
+      "best_any": 0.875,
+      "best_typed": 0.875,
+      "compliant_any": 0.875,
+      "compliant_typed": 0.875,
       "dead_both_modes": false,
       "n": 16,
       "type": "ORGANIZATION"
