@@ -1,0 +1,170 @@
+{
+  "corpus": "eval/corpus/per_type.jsonl",
+  "dead_types": [],
+  "gates": {
+    "macro_recall_floor": true,
+    "no_dead_type": true
+  },
+  "healthy_type_recall": 0.9,
+  "known_open": [
+    {
+      "best_any_recall": 0.8125,
+      "best_typed_recall": 0.625,
+      "type": "DE_ID_CARD"
+    },
+    {
+      "best_any_recall": 0.875,
+      "best_typed_recall": 0.875,
+      "type": "ORGANIZATION"
+    },
+    {
+      "best_any_recall": 0.9375,
+      "best_typed_recall": 0.875,
+      "type": "IP_ADDRESS"
+    }
+  ],
+  "macro_recall_floor": 0.9,
+  "macro_typed_recall_best_mode": 0.9375,
+  "micro_typed_recall_best_mode": 0.9388,
+  "modes": [
+    "balanced",
+    "compliant"
+  ],
+  "n_examples": 196,
+  "per_type": [
+    {
+      "balanced_any": 0.8125,
+      "balanced_typed": 0.625,
+      "best_any": 0.8125,
+      "best_typed": 0.625,
+      "compliant_any": 0.8125,
+      "compliant_typed": 0.625,
+      "dead_both_modes": false,
+      "n": 16,
+      "type": "DE_ID_CARD"
+    },
+    {
+      "balanced_any": 0.875,
+      "balanced_typed": 0.875,
+      "best_any": 0.875,
+      "best_typed": 0.875,
+      "compliant_any": 0.875,
+      "compliant_typed": 0.875,
+      "dead_both_modes": false,
+      "n": 16,
+      "type": "ORGANIZATION"
+    },
+    {
+      "balanced_any": 0.9375,
+      "balanced_typed": 0.875,
+      "best_any": 0.9375,
+      "best_typed": 0.875,
+      "compliant_any": 0.9375,
+      "compliant_typed": 0.875,
+      "dead_both_modes": false,
+      "n": 16,
+      "type": "IP_ADDRESS"
+    },
+    {
+      "balanced_any": 1.0,
+      "balanced_typed": 0.9375,
+      "best_any": 1.0,
+      "best_typed": 0.9375,
+      "compliant_any": 1.0,
+      "compliant_typed": 0.9375,
+      "dead_both_modes": false,
+      "n": 16,
+      "type": "CREDIT_CARD"
+    },
+    {
+      "balanced_any": 1.0,
+      "balanced_typed": 0.9375,
+      "best_any": 1.0,
+      "best_typed": 0.9375,
+      "compliant_any": 1.0,
+      "compliant_typed": 0.9375,
+      "dead_both_modes": false,
+      "n": 16,
+      "type": "DE_SOCIAL_SECURITY"
+    },
+    {
+      "balanced_any": 1.0,
+      "balanced_typed": 1.0,
+      "best_any": 1.0,
+      "best_typed": 1.0,
+      "compliant_any": 1.0,
+      "compliant_typed": 1.0,
+      "dead_both_modes": false,
+      "n": 16,
+      "type": "DE_TAX_ID"
+    },
+    {
+      "balanced_any": 1.0,
+      "balanced_typed": 1.0,
+      "best_any": 1.0,
+      "best_typed": 1.0,
+      "compliant_any": 1.0,
+      "compliant_typed": 1.0,
+      "dead_both_modes": false,
+      "n": 16,
+      "type": "EMAIL_ADDRESS"
+    },
+    {
+      "balanced_any": 1.0,
+      "balanced_typed": 1.0,
+      "best_any": 1.0,
+      "best_typed": 1.0,
+      "compliant_any": 1.0,
+      "compliant_typed": 1.0,
+      "dead_both_modes": false,
+      "n": 18,
+      "type": "IBAN_CODE"
+    },
+    {
+      "balanced_any": 1.0,
+      "balanced_typed": 1.0,
+      "best_any": 1.0,
+      "best_typed": 1.0,
+      "compliant_any": 1.0,
+      "compliant_typed": 1.0,
+      "dead_both_modes": false,
+      "n": 16,
+      "type": "LOCATION"
+    },
+    {
+      "balanced_any": 1.0,
+      "balanced_typed": 1.0,
+      "best_any": 1.0,
+      "best_typed": 1.0,
+      "compliant_any": 1.0,
+      "compliant_typed": 1.0,
+      "dead_both_modes": false,
+      "n": 16,
+      "type": "PERSON"
+    },
+    {
+      "balanced_any": 1.0,
+      "balanced_typed": 1.0,
+      "best_any": 1.0,
+      "best_typed": 1.0,
+      "compliant_any": 1.0,
+      "compliant_typed": 1.0,
+      "dead_both_modes": false,
+      "n": 18,
+      "type": "PHONE_NUMBER"
+    },
+    {
+      "balanced_any": 1.0,
+      "balanced_typed": 1.0,
+      "best_any": 1.0,
+      "best_typed": 1.0,
+      "compliant_any": 1.0,
+      "compliant_typed": 1.0,
+      "dead_both_modes": false,
+      "n": 16,
+      "type": "URL"
+    }
+  ],
+  "phase": "phase2-per-type-recall",
+  "skipped": []
+}

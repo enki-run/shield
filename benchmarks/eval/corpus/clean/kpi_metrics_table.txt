@@ -1,0 +1,49 @@
+KPI-Report Betrieb Quartal Zwei
+
+Uebersicht der Betriebskennzahlen
+
+Dieser Report fasst die zentralen Leistungskennzahlen des Betriebs zusammen.
+Alle Werte beziehen sich auf das abgeschlossene Quartal und werden mit dem
+Vorquartal verglichen. Die Datenbasis stammt aus dem Monitoring-System.
+
+Verfuegbarkeit und Stabilitaet
+
+Verfuegbarkeit Plattform: 99,95 Prozent
+Verfuegbarkeit Datenbank: 99,98 Prozent
+Anzahl Incidents: 12
+Anzahl kritische Incidents: 2
+Mittlere Wiederherstellungszeit: 34 Minuten
+Mittlere Reaktionszeit: 8 Minuten
+
+Durchsatz und Last
+
+Durchschnittliche Anfragen pro Sekunde: 1450
+Spitzenlast Anfragen pro Sekunde: 3200
+Durchschnittliche Antwortzeit: 120 Millisekunden
+Antwortzeit 95-Perzentil: 380 Millisekunden
+Fehlerquote: 0,12 Prozent
+Datenvolumen pro Tag: 2,4 Terabyte
+
+Kapazitaet und Auslastung
+
+CPU-Auslastung Durchschnitt: 47 Prozent
+Arbeitsspeicher-Auslastung: 61 Prozent
+Speicherplatz belegt: 73 Prozent
+Anzahl aktiver Nodes: 24
+Anzahl Container: 312
+Skalierungsereignisse: 56
+
+Service-Level und Tickets
+
+Eingegangene Tickets: 428
+Geloeste Tickets: 415
+Offene Tickets: 13
+SLA-Erfuellung: 97,4 Prozent
+Eskalationen: 9
+Durchschnittliche Bearbeitungsdauer: 6,2 Stunden
+
+Bewertung
+
+Die Verfuegbarkeit liegt oberhalb des Zielwerts von 99,9 Prozent. Die Fehlerquote
+hat sich gegenueber dem Vorquartal halbiert. Die Kapazitaetsauslastung bleibt im
+gruenen Bereich. Handlungsbedarf besteht bei der Reduktion der Eskalationen.

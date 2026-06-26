@@ -1,0 +1,47 @@
+SOP: Change-Management-Prozess
+
+Zweck und Geltungsbereich
+
+Diese Standardarbeitsanweisung regelt den Umgang mit Aenderungen an produktiven
+Systemen. Sie gilt fuer alle technischen und organisatorischen Aenderungen, die
+den Betrieb der Plattform beeinflussen koennen. Ziel ist eine nachvollziehbare,
+risikoarme und dokumentierte Durchfuehrung jeder Aenderung.
+
+Begriffe
+
+Eine Aenderung ist jede Modifikation an Konfiguration, Code oder Infrastruktur.
+Ein Standard-Change ist vorab genehmigt und folgt einer dokumentierten Vorlage.
+Ein Normal-Change durchlaeuft die vollstaendige Bewertung. Ein Notfall-Change wird
+beschleunigt bearbeitet und nachtraeglich dokumentiert.
+
+Ablauf
+
+Schritt eins ist die Erfassung des Aenderungsantrags. Der Antrag beschreibt Ziel,
+Umfang, betroffene Komponenten und das geplante Zeitfenster. Schritt zwei ist die
+Risikobewertung anhand der Kriterien Auswirkung, Wahrscheinlichkeit und Reversibilitaet.
+Schritt drei ist die Genehmigung durch das Change-Advisory-Board. Schritt vier ist
+die Durchfuehrung im genehmigten Wartungsfenster. Schritt fuenf ist die Verifikation
+und der Abschluss mit Dokumentation des Ergebnisses.
+
+Rollen
+
+Der Antragsteller erstellt und begruendet den Antrag. Das Change-Advisory-Board
+bewertet und genehmigt. Der Umsetzende fuehrt die Aenderung durch. Die Qualitaetssicherung
+prueft das Ergebnis. Alle Rollen werden funktional benannt und nicht personenbezogen.
+
+Dokumentation
+
+Jede Aenderung wird im Ticketsystem dokumentiert. Die Dokumentation umfasst den Antrag,
+die Bewertung, die Genehmigung, das Durchfuehrungsprotokoll und das Abschlussergebnis.
+Die Aufbewahrungsfrist betraegt drei Jahre.
+
+Rollback
+
+Vor jeder Aenderung wird ein Rollback-Plan erstellt. Der Plan beschreibt die Schritte
+zur Wiederherstellung des Ausgangszustands. Bei kritischen Fehlern wird der Rollback
+unverzueglich ausgeloest und der Vorfall als Notfall-Change behandelt.
+
+Pruefung und Freigabe
+
+Diese Anweisung wird jaehrlich auf Aktualitaet geprueft. Aenderungen an der Anweisung
+selbst folgen demselben Change-Prozess. Die Freigabe erfolgt durch die Prozessverantwortung.

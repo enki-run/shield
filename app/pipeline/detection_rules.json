@@ -5,13 +5,26 @@
 
   "rules": [
     {
+      "name": "DE_IBAN_Fallback",
+      "entity_type": "IBAN_CODE",
+      "description": "German IBAN by shape (DE + 20 digits). Catches typed/OCR IBANs that fail the ISO-13616 mod-97 checksum, which Presidio's IbanRecognizer silently rejects (-> verbatim leak). Lower score than the validating recognizer.",
+      "patterns": [
+        {
+          "name": "de_iban_shape",
+          "regex": "\\bDE\\d{2}(?:\\s?\\d{4}){4}\\s?\\d{2}\\b",
+          "score": 0.6
+        }
+      ],
+      "context": ["iban", "konto", "bank", "überweisung", "ueberweisung", "bankverbindung", "zahlung"]
+    },
+    {
       "name": "DE_StreetWithNumber",
       "entity_type": "LOCATION",
       "description": "German street + house number",
       "patterns": [
         {
           "name": "street_suffix_number",
-          "regex": "\\b(?:[\\w\\u00C0-\\u024F]+[- ])*[\\w\\u00C0-\\u024F]*(?:stra[sß]e|strasse|str\\.|gasse|weg|allee|platz|ring|damm|ufer|chaussee|heide|hof|berg|tal|feld|grund|au|aue)\\.? \\d{1,4} ?[a-zA-Z]?\\b",
+          "regex": "\\b(?:[\\w\\u00C0-\\u024F]+-)*[\\w\\u00C0-\\u024F]*(?:stra[sß]e|strasse|str\\.|gasse|weg|allee|platz|ring|damm|ufer|chaussee|heide|hof|berg|tal|feld|grund|au|aue)\\.? \\d{1,4} ?[a-zA-Z]?\\b",
           "score": 0.9
         }
       ],
@@ -24,7 +37,7 @@
       "patterns": [
         {
           "name": "street_suffix_only",
-          "regex": "\\b(?:[\\w\\u00C0-\\u024F]+[-\\s])*[\\w\\u00C0-\\u024F]*(?:stra[sß]e|strasse|str\\.|gasse|weg|allee|platz|ring|damm|ufer|chaussee|heide|hof|berg|tal|feld|grund|au|aue)\\.?\\b",
+          "regex": "\\b(?:[\\w\\u00C0-\\u024F]+-)*[\\w\\u00C0-\\u024F]*(?:stra[sß]e|strasse|str\\.|gasse|weg|allee|platz|ring|damm|ufer|chaussee|heide|hof|berg|tal|feld|grund|au|aue)\\.?\\b",
           "score": 0.7
         }
       ],
@@ -120,7 +133,7 @@
       "patterns": [
         {
           "name": "org_legal_suffix",
-          "regex": "[A-ZÄÖÜ][\\w\\u00C0-\\u024F]+(?:(?: [&] | )[A-ZÄÖÜa-zäöü][\\w\\u00C0-\\u024F]+){0,7} (?:GmbH|mbH|AG|e\\.? ?V\\.|KG|OHG|SE|gGmbH|UG|Ltd\\.|Inc\\.|S\\.?A\\.?|Co\\. ?KG)\\b",
+          "regex": "[A-ZÄÖÜ][\\w\\u00C0-\\u024F]+(?:(?: [&] | )[A-ZÄÖÜa-zäöü][\\w\\u00C0-\\u024F]+){0,7} (?:GmbH|mbH|AG|e\\.? ?V\\.|KG|OHG|SE|gGmbH|UG|Ltd\\.|Inc\\.|S\\.?A\\.?|Co\\. ?KG)(?=\\W|$)",
           "score": 0.85
         }
       ],
@@ -176,11 +189,19 @@
   "entity_dedup": {
     "_comment": "When entities overlap, higher confidence wins. Priority breaks ties (lower = preferred).",
     "type_priority": {
+      "EMAIL_ADDRESS": 0,
       "IBAN_CODE": 0,
+      "CREDIT_CARD": 0,
+      "IP_ADDRESS": 0,
+      "URL": 0,
+      "DE_TAX_ID": 1,
       "DE_SOCIAL_SECURITY": 1,
-      "LOCATION": 2,
-      "ORGANIZATION": 3,
-      "PHONE_NUMBER": 4,
+      "DE_ID_CARD": 1,
+      "US_SSN": 1,
+      "MEDICAL_LICENSE": 1,
+      "PHONE_NUMBER": 2,
+      "LOCATION": 3,
+      "ORGANIZATION": 4,
       "PERSON": 5
     }
   }

@@ -1,0 +1,40 @@
+Runbook: Observability-Plattform Betrieb
+
+Dieses Runbook beschreibt den Betrieb der zentralen Observability-Plattform.
+Der Stack besteht aus Kafka als Message-Bus, Datadog fuer Metriken, Jenkins fuer
+die Build-Pipeline und HashiCorp Vault fuer das Secret-Management. Die Cluster
+laufen auf Kubernetes, orchestriert ueber ArgoCD und Terraform.
+
+Architektur und Komponenten
+
+Die Ingest-Schicht nimmt Telemetrie ueber Kafka entgegen. Jeder Producer schreibt
+in die Topics events-raw und events-enriched. Datadog Agents scrapen die Metriken
+und liefern sie an das zentrale Dashboard. Prometheus und Loki ergaenzen die
+Datadog-Pipeline fuer Logs und Traces. Vault verwaltet die Rotation der API-Keys
+und der TLS-Zertifikate. Jenkins triggert die Deployments ueber ArgoCD.
+
+Deployment-Prozess
+
+Ein neuer Release wird ueber Jenkins gebaut und als Container-Image in die
+Registry geschoben. ArgoCD synchronisiert das Manifest in den Cluster. Terraform
+provisioniert die Infrastruktur in der Cloud-Region eu-central. Die Rollout-Strategie
+ist Canary mit zehn Prozent Traffic in der ersten Stufe. Bei Fehlern erfolgt ein
+automatischer Rollback ueber ArgoCD.
+
+Betrieb und Wartung
+
+Die Kafka-Broker werden monatlich gepatcht. Datadog Monitore alarmieren bei einer
+Lag von mehr als fuenftausend Nachrichten. Vault Unseal erfolgt automatisiert ueber
+den Auto-Unseal-Mechanismus mit einem Cloud-KMS-Key. Jenkins-Agents skalieren
+elastisch ueber das Kubernetes-Plugin. Loki retention ist auf dreissig Tage gesetzt.
+
+Troubleshooting
+
+Wenn ein Kafka-Broker nicht erreichbar ist, pruefe den Pod-Status ueber kubectl.
+Wenn Datadog keine Metriken empfaengt, pruefe den Agent-Status und die API-Verbindung.
+Wenn Vault versiegelt ist, pruefe den KMS-Zugriff und den Auto-Unseal-Status.
+Wenn Jenkins-Builds haengen, pruefe die Agent-Auslastung und die Queue-Tiefe.
+Wenn ArgoCD out of sync meldet, vergleiche das Live-Manifest mit dem Git-Stand.
+
+Eskalation erfolgt ueber das Bereitschafts-Team gemaess Schichtplan. Alle Alarme
+werden in Datadog dokumentiert und nach Severity klassifiziert.
