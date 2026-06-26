@@ -92,3 +92,18 @@ def test_ip_address_detected_in_balanced_mode():
     det = PiiDetector(mode="balanced")
     ents = det.detect("Der Server antwortet unter der Adresse 203.0.113.42 nicht.")
     assert "IP_ADDRESS" in [e.entity_type for e in ents]
+
+
+@pytest.mark.skipif(not HAS_SPACY, reason=SKIP_MSG)
+def test_street_regex_does_not_swallow_preceding_words():
+    """Audit defect: the greedy DE_StreetName prefix matches any words before a
+    '...strasse' suffix, producing a giant LOCATION span ('Max Mustermann wohnt
+    in der Musterstrasse') that — via containment dedup — swallows the real
+    PERSON. The street span must stay tight and the person must survive."""
+    from app.pipeline.detector import PiiDetector
+
+    det = PiiDetector(mode="balanced")
+    ents = det.detect("Max Mustermann wohnt in der Musterstrasse 1, 10115 Berlin.")
+    locs = [e.text for e in ents if e.entity_type == "LOCATION"]
+    assert not any("Mustermann" in loc for loc in locs), f"greedy street span: {locs}"
+    assert "PERSON" in [e.entity_type for e in ents], "person swallowed by giant span"

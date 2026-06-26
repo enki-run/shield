@@ -11,7 +11,7 @@
       "patterns": [
         {
           "name": "street_suffix_number",
-          "regex": "\\b(?:[\\w\\u00C0-\\u024F]+[- ])*[\\w\\u00C0-\\u024F]*(?:stra[sß]e|strasse|str\\.|gasse|weg|allee|platz|ring|damm|ufer|chaussee|heide|hof|berg|tal|feld|grund|au|aue)\\.? \\d{1,4} ?[a-zA-Z]?\\b",
+          "regex": "\\b(?:[\\w\\u00C0-\\u024F]+-)*[\\w\\u00C0-\\u024F]*(?:stra[sß]e|strasse|str\\.|gasse|weg|allee|platz|ring|damm|ufer|chaussee|heide|hof|berg|tal|feld|grund|au|aue)\\.? \\d{1,4} ?[a-zA-Z]?\\b",
           "score": 0.9
         }
       ],
@@ -24,7 +24,7 @@
       "patterns": [
         {
           "name": "street_suffix_only",
-          "regex": "\\b(?:[\\w\\u00C0-\\u024F]+[-\\s])*[\\w\\u00C0-\\u024F]*(?:stra[sß]e|strasse|str\\.|gasse|weg|allee|platz|ring|damm|ufer|chaussee|heide|hof|berg|tal|feld|grund|au|aue)\\.?\\b",
+          "regex": "\\b(?:[\\w\\u00C0-\\u024F]+-)*[\\w\\u00C0-\\u024F]*(?:stra[sß]e|strasse|str\\.|gasse|weg|allee|platz|ring|damm|ufer|chaussee|heide|hof|berg|tal|feld|grund|au|aue)\\.?\\b",
           "score": 0.7
         }
       ],
