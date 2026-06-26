@@ -189,3 +189,28 @@ def test_de_id_card_context_free_code_not_flagged():
     det = PiiDetector(mode="balanced")
     ents = det.detect("Die Bestellnummer K123456789 wurde versandt.")
     assert not [e for e in ents if e.entity_type == "DE_ID_CARD"]
+
+
+@pytest.mark.skipif(not HAS_SPACY, reason=SKIP_MSG)
+def test_institutional_org_with_fuer_connector_detected_without_oversweep():
+    """Audit defect: DE_OrgInstitution only had the umlaut 'für' connector, so
+    ASCII 'Institut fuer Forschung' was missed. The 'fuer' alternation fixes it,
+    but MUST keep the (?-i:) anchoring or IGNORECASE makes it swallow the whole
+    sentence."""
+    from app.pipeline.detector import PiiDetector
+
+    det = PiiDetector(mode="balanced")
+    for txt, org in (
+        ("Das Beispiel Institut fuer Forschung publiziert Studien.", "Beispiel Institut fuer Forschung"),
+        ("Die Beispiel Stiftung fuer Bildung foerdert Schueler.", "Beispiel Stiftung fuer Bildung"),
+    ):
+        start = txt.index(org)
+        orgs = [e for e in det.detect(txt) if e.entity_type == "ORGANIZATION"]
+        assert any(e.start <= start and e.end >= start + len(org) for e in orgs), (
+            f"{org!r} not covered: {[e.text for e in orgs]}"
+        )
+    # over-extension guard: generic 'Institut fuer X' prose must not swallow the
+    # sentence tail (would be RED under a bare-'fuer' fix without (?-i:) anchoring)
+    tail = "Es gibt ein Institut fuer moderne Kunst in der Naehe."
+    orgs = [e for e in det.detect(tail) if e.entity_type == "ORGANIZATION"]
+    assert not any("Naehe" in e.text for e in orgs), f"sentence over-sweep: {[e.text for e in orgs]}"

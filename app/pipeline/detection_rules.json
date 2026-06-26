@@ -164,7 +164,7 @@
         },
         {
           "name": "org_institution_no_suffix",
-          "regex": "[A-ZÄÖÜ][\\w\\u00C0-\\u024F]+(?: [A-ZÄÖÜ][\\w\\u00C0-\\u024F]+)* (?:Institut|Verein|Stiftung|Verband|Akademie|Zentrum|Amt|Behörde|Ministerium) (?:für|der|des|zu) [A-ZÄÖÜ][\\w\\u00C0-\\u024F]+(?:[ ][A-ZÄÖÜ][\\w\\u00C0-\\u024F]+)*",
+          "regex": "(?-i:[A-ZÄÖÜ])[\\w\\u00C0-\\u024F]*(?: (?-i:[A-ZÄÖÜ])[\\w\\u00C0-\\u024F]*)* (?:Institut|Verein|Stiftung|Verband|Akademie|Zentrum|Amt|Behörde|Ministerium) (?:für|fuer|der|des|zu) (?-i:[A-ZÄÖÜ])[\\w\\u00C0-\\u024F]*(?:[ ](?-i:[A-ZÄÖÜ])[\\w\\u00C0-\\u024F]*){0,2}",
           "score": 0.75
         }
       ],

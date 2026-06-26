@@ -25,7 +25,7 @@ from benchmarks.eval._common import load_jsonl
 # Documented open recall defects on the post-fix branch (best-mode typed recall
 # below the healthy 90% bar). Encoded as xfail: a regression keeps failing here,
 # a real fix flips to xpass and tells us to promote the type.
-KNOWN_OPEN_TYPES = {"DE_ID_CARD", "ORGANIZATION"}  # IP_ADDRESS promoted: IPv6 compressed rule
+KNOWN_OPEN_TYPES = {"DE_ID_CARD"}  # IP_ADDRESS + ORGANIZATION promoted (IPv6 rule; fuer-connector + anchoring)
 
 
 @pytest.fixture(scope="module")
