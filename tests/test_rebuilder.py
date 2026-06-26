@@ -141,3 +141,39 @@ def test_rebuild_unsupported_format(tmp_path):
     content = make_content([ContentBlock(text="test")])
     with pytest.raises(ValueError, match="Unsupported output format"):
         rebuild_document(content, str(tmp_path / "out.xyz"), "xyz")
+
+
+# ---------------------------------------------------------------------------
+# Regression: DOCX rebuilder must not let a short original clobber a longer
+# overlapping one (2026-06-26 accuracy audit).
+# ---------------------------------------------------------------------------
+
+def test_rebuild_docx_longest_original_first_no_clobber(tmp_path):
+    """Naive in-order str.replace lets the short PERSON original 'Mustermann'
+    replace inside the longer ORG original 'Mustermann Logistik GmbH', leaking
+    'Logistik GmbH' and orphaning the ORG mapping. Longest-first must fix it."""
+    src = DocxDocument()
+    src.add_paragraph("Ansprechpartner: Mustermann")
+    src.add_paragraph("Auftraggeber ist die Mustermann Logistik GmbH")
+    orig = str(tmp_path / "orig.docx")
+    src.save(orig)
+
+    # Clobber-triggering insertion order: the short key comes first.
+    replacements = {
+        "Mustermann": "PERSON-4DCCBC03",
+        "Mustermann Logistik GmbH": "ORGANIZATION-FCA11241",
+    }
+    content = make_content(
+        [
+            ContentBlock(text="Ansprechpartner: Mustermann"),
+            ContentBlock(text="Auftraggeber ist die Mustermann Logistik GmbH"),
+        ],
+        metadata={"original_path": orig, "replacements": replacements},
+    )
+    out = str(tmp_path / "out.docx")
+    rebuild_document(content, out, "docx")
+
+    full = "\n".join(p.text for p in DocxDocument(out).paragraphs)
+    assert "Mustermann" not in full, f"original PII leaked: {full!r}"
+    assert "ORGANIZATION-FCA11241" in full, f"org mapping orphaned/clobbered: {full!r}"
+    assert "Logistik GmbH" not in full, f"cleartext fragment leaked: {full!r}"

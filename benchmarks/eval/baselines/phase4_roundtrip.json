@@ -14,7 +14,6 @@
     "compliant:pseudonym_consistency": true
   },
   "known_open_baseline": [
-    "L01X00T471",
     "Mustermann Consulting"
   ],
   "modes": {
@@ -23,54 +22,46 @@
       "collisions": 0,
       "consistency_examples": [],
       "consistency_violations": 0,
-      "distinct_originals": 20,
-      "distinct_pseudonyms": 20,
+      "distinct_originals": 21,
+      "distinct_pseudonyms": 21,
       "docs": 15,
       "leak_examples": [
-        {
-          "doc": "rt-13-id-card",
-          "substring": "L01X00T471"
-        },
         {
           "doc": "rt-14-org-suffixless",
           "substring": "Mustermann Consulting"
         }
       ],
-      "leaks_accepted_known_open": 2,
+      "leaks_accepted_known_open": 1,
       "leaks_new": 0,
-      "leaks_total": 2,
+      "leaks_total": 1,
       "mode": "balanced",
       "new_leak_examples": [],
       "new_leak_rate": 0.0,
       "required_substrings": 24,
-      "residual_leak_rate": 0.0833
+      "residual_leak_rate": 0.0417
     },
     "compliant": {
       "collision_examples": [],
       "collisions": 0,
       "consistency_examples": [],
       "consistency_violations": 0,
-      "distinct_originals": 20,
-      "distinct_pseudonyms": 20,
+      "distinct_originals": 21,
+      "distinct_pseudonyms": 21,
       "docs": 15,
       "leak_examples": [
-        {
-          "doc": "rt-13-id-card",
-          "substring": "L01X00T471"
-        },
         {
           "doc": "rt-14-org-suffixless",
           "substring": "Mustermann Consulting"
         }
       ],
-      "leaks_accepted_known_open": 2,
+      "leaks_accepted_known_open": 1,
       "leaks_new": 0,
-      "leaks_total": 2,
+      "leaks_total": 1,
       "mode": "compliant",
       "new_leak_examples": [],
       "new_leak_rate": 0.0,
       "required_substrings": 24,
-      "residual_leak_rate": 0.0833
+      "residual_leak_rate": 0.0417
     }
   },
   "phase": "phase4-roundtrip-leak"

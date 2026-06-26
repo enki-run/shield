@@ -1,6 +1,6 @@
 {
   "_comment": "Shield PII Detection Rules — edit this file to tune detection without code changes.",
-  "_version": "1.1.0",
+  "_version": "1.2.0",
   "_docs": "Each rule creates a Presidio PatternRecognizer. 'context' words boost confidence when found nearby.",
 
   "rules": [
@@ -16,6 +16,19 @@
         }
       ],
       "context": ["iban", "konto", "bank", "überweisung", "ueberweisung", "bankverbindung", "zahlung"]
+    },
+    {
+      "name": "IPv6_Compressed",
+      "entity_type": "IP_ADDRESS",
+      "description": "Full + compressed (::) IPv6. Presidio's IpRecognizer truncates compressed forms to the prefix (2001:db8:: only), leaking the tail. Boundary guards (not \\b) avoid MAC addresses / HH:MM:SS times; requiring >=1 hex group avoids a bare '::' scope operator.",
+      "patterns": [
+        {
+          "name": "ipv6_full_or_compressed",
+          "regex": "(?<![0-9A-Za-z:])(?:(?:[0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4}|(?:[0-9A-Fa-f]{1,4}(?::[0-9A-Fa-f]{1,4})*::(?:[0-9A-Fa-f]{1,4}(?::[0-9A-Fa-f]{1,4})*)?|::[0-9A-Fa-f]{1,4}(?::[0-9A-Fa-f]{1,4})*))(?![0-9A-Za-z:])",
+          "score": 0.6
+        }
+      ],
+      "context": ["ip", "ipv6", "adresse", "host", "gateway"]
     },
     {
       "name": "DE_StreetWithNumber",
@@ -120,8 +133,8 @@
       "patterns": [
         {
           "name": "perso_nr",
-          "regex": "\\b[A-Z][A-Z0-9]\\d{7}[A-Z]?\\b",
-          "score": 0.5
+          "regex": "\\b[CFGHJKLMNPRTVWXYZ][CFGHJKLMNPRTVWXYZ0-9]{8}[A-Z0-9]?\\b",
+          "score": 0.35
         }
       ],
       "context": ["personalausweis", "ausweis", "ausweisn", "perso", "identit"]
@@ -151,7 +164,7 @@
         },
         {
           "name": "org_institution_no_suffix",
-          "regex": "[A-ZÄÖÜ][\\w\\u00C0-\\u024F]+(?: [A-ZÄÖÜ][\\w\\u00C0-\\u024F]+)* (?:Institut|Verein|Stiftung|Verband|Akademie|Zentrum|Amt|Behörde|Ministerium) (?:für|der|des|zu) [A-ZÄÖÜ][\\w\\u00C0-\\u024F]+(?:[ ][A-ZÄÖÜ][\\w\\u00C0-\\u024F]+)*",
+          "regex": "(?-i:[A-ZÄÖÜ])[\\w\\u00C0-\\u024F]*(?: (?-i:[A-ZÄÖÜ])[\\w\\u00C0-\\u024F]*)* (?:Institut|Verein|Stiftung|Verband|Akademie|Zentrum|Amt|Behörde|Ministerium) (?:für|fuer|der|des|zu) (?-i:[A-ZÄÖÜ])[\\w\\u00C0-\\u024F]*(?:[ ](?-i:[A-ZÄÖÜ])[\\w\\u00C0-\\u024F]*){0,2}",
           "score": 0.75
         }
       ],

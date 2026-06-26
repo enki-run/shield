@@ -135,3 +135,82 @@ def test_org_with_dotted_legal_suffix_is_detected():
     ):
         orgs = [e.text for e in det.detect(txt) if e.entity_type == "ORGANIZATION"]
         assert any("Beispiel" in o for o in orgs), f"dotted-suffix org leaked: {orgs} in {txt!r}"
+
+
+@pytest.mark.skipif(not HAS_SPACY, reason=SKIP_MSG)
+def test_ipv6_compressed_fully_covered():
+    """Audit defect: Presidio's IpRecognizer truncates compressed IPv6 to the
+    prefix ('2001:db8::'), so the tail leaks. A config rule must cover the full
+    compressed form span-exact."""
+    from app.pipeline.detector import PiiDetector
+
+    text = "Kurzform 2001:db8::8a2e:370:7334 ebenfalls gueltig."
+    value = "2001:db8::8a2e:370:7334"
+    s = text.index(value)
+    ents = PiiDetector(mode="balanced").detect(text)
+    assert any(
+        e.entity_type == "IP_ADDRESS" and e.start == s and e.end == s + len(value)
+        for e in ents
+    ), f"compressed IPv6 not span-exact: {[(e.entity_type, e.text) for e in ents]}"
+
+
+@pytest.mark.skipif(not HAS_SPACY, reason=SKIP_MSG)
+def test_ipv6_rule_no_mac_or_scope_false_positive():
+    """The IPv6 rule must not flag MAC addresses or the C++ '::' scope operator."""
+    from app.pipeline.detector import PiiDetector
+
+    det = PiiDetector(mode="compliant")
+    for t in ("MAC 00:1A:2B:3C:4D:5E am Switch.", "Der Operator :: in C++ trennt Namensraeume."):
+        assert not [e for e in det.detect(t) if e.entity_type == "IP_ADDRESS"], t
+
+
+@pytest.mark.skipif(not HAS_SPACY, reason=SKIP_MSG)
+def test_de_id_card_interior_letters_detected():
+    """Audit defect: the DE_Personalausweis regex hard-coded 7 digits at pos 3-9,
+    missing real nPA serials with interior letters (L01X00T471)."""
+    from app.pipeline.detector import PiiDetector
+
+    det = PiiDetector(mode="balanced")
+    for txt, serial in (
+        ("Personalausweis-Nummer L01X00T471 vorgelegt.", "L01X00T471"),
+        ("Mein Personalausweis L1234567X8 ist gueltig.", "L1234567X8"),
+        ("Die Ausweisnummer C2345678Y9 wurde geprueft.", "C2345678Y9"),
+    ):
+        ids = [e.text for e in det.detect(txt) if e.entity_type == "DE_ID_CARD"]
+        assert serial in ids, f"{serial} not detected as DE_ID_CARD"
+
+
+@pytest.mark.skipif(not HAS_SPACY, reason=SKIP_MSG)
+def test_de_id_card_context_free_code_not_flagged():
+    """FP guard: a context-free alphanumeric code must stay below the floor and
+    NOT be flagged as DE_ID_CARD (the score-0.35 + context-gate is the safeguard)."""
+    from app.pipeline.detector import PiiDetector
+
+    det = PiiDetector(mode="balanced")
+    ents = det.detect("Die Bestellnummer K123456789 wurde versandt.")
+    assert not [e for e in ents if e.entity_type == "DE_ID_CARD"]
+
+
+@pytest.mark.skipif(not HAS_SPACY, reason=SKIP_MSG)
+def test_institutional_org_with_fuer_connector_detected_without_oversweep():
+    """Audit defect: DE_OrgInstitution only had the umlaut 'für' connector, so
+    ASCII 'Institut fuer Forschung' was missed. The 'fuer' alternation fixes it,
+    but MUST keep the (?-i:) anchoring or IGNORECASE makes it swallow the whole
+    sentence."""
+    from app.pipeline.detector import PiiDetector
+
+    det = PiiDetector(mode="balanced")
+    for txt, org in (
+        ("Das Beispiel Institut fuer Forschung publiziert Studien.", "Beispiel Institut fuer Forschung"),
+        ("Die Beispiel Stiftung fuer Bildung foerdert Schueler.", "Beispiel Stiftung fuer Bildung"),
+    ):
+        start = txt.index(org)
+        orgs = [e for e in det.detect(txt) if e.entity_type == "ORGANIZATION"]
+        assert any(e.start <= start and e.end >= start + len(org) for e in orgs), (
+            f"{org!r} not covered: {[e.text for e in orgs]}"
+        )
+    # over-extension guard: generic 'Institut fuer X' prose must not swallow the
+    # sentence tail (would be RED under a bare-'fuer' fix without (?-i:) anchoring)
+    tail = "Es gibt ein Institut fuer moderne Kunst in der Naehe."
+    orgs = [e for e in det.detect(tail) if e.entity_type == "ORGANIZATION"]
+    assert not any("Naehe" in e.text for e in orgs), f"sentence over-sweep: {[e.text for e in orgs]}"

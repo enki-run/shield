@@ -94,12 +94,8 @@ def test_lenient_is_not_worse_than_strict(gold_res):
 # Known-open defects: each is a REAL leak / over-redaction / inflation today.
 # Encode as strict xfail so CI stays green now, but a fix surfaces as XPASS.
 # --------------------------------------------------------------------------- #
-@pytest.mark.xfail(
-    strict=True,
-    reason="open defect: DE_ID_CARD regex/priority gap — 'L01X00T47' is not "
-           "detected as DE_ID_CARD (span-exact miss = cleartext leak)",
-)
 def test_known_open_de_id_card_detected(docs):
+    # FIXED: DE_Personalausweis regex now covers interior-letter nPA serials.
     doc = next(d for d in docs if d["id"] == "g07_id_card")
     dets = detect(doc["text"], mode="balanced")
     gold = doc_spans(doc)[0]  # the DE_ID_CARD span

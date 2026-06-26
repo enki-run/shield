@@ -90,14 +90,14 @@
       "pass": true
     },
     "gold_f1_floor": {
-      "f1": 0.7568,
-      "floor": 0.7368,
+      "f1": 0.7895,
+      "floor": 0.7695,
       "pass": true
     }
   },
   "gold": {
     "clean_fp": 0,
-    "coverage_rate": 0.8947,
+    "coverage_rate": 0.9474,
     "leaks": [
       {
         "doc": "g06_org_city",
@@ -106,16 +106,6 @@
             "ORGANIZATION",
             25,
             36
-          ]
-        ]
-      },
-      {
-        "doc": "g07_id_card",
-        "missed": [
-          [
-            "DE_ID_CARD",
-            35,
-            44
           ]
         ]
       },
@@ -141,12 +131,12 @@
       }
     ],
     "lenient_type": {
-      "f1": 0.7568,
-      "fn": 5,
+      "f1": 0.7895,
+      "fn": 4,
       "fp": 4,
-      "precision": 0.7778,
-      "recall": 0.7368,
-      "tp": 14
+      "precision": 0.7895,
+      "recall": 0.7895,
+      "tp": 15
     },
     "mode": "balanced",
     "over_redactions": [
@@ -279,18 +269,18 @@
         }
       },
       {
-        "coverage": 0.0,
+        "coverage": 1.0,
         "gold": 1,
         "id": "g07_id_card",
-        "lenient_f1": 0.0,
+        "lenient_f1": 1.0,
         "pii_free": false,
         "strict": {
-          "f1": 0.0,
-          "fn": 1,
+          "f1": 1.0,
+          "fn": 0,
           "fp": 0,
-          "precision": 0.0,
-          "recall": 0.0,
-          "tp": 0
+          "precision": 1.0,
+          "recall": 1.0,
+          "tp": 1
         }
       },
       {
@@ -355,12 +345,12 @@
       }
     ],
     "strict": {
-      "f1": 0.7568,
-      "fn": 5,
+      "f1": 0.7895,
+      "fn": 4,
       "fp": 4,
-      "precision": 0.7778,
-      "recall": 0.7368,
-      "tp": 14
+      "precision": 0.7895,
+      "recall": 0.7895,
+      "tp": 15
     }
   },
   "gold_corpus_path": "benchmarks/eval/corpus/strict_gold.jsonl",
@@ -369,7 +359,6 @@
   "known_open": [
     "cv_synthetic strict recall 0.8462 is far below the inflated official 0.93 — the official number came from fuzzy substring matching, not span-exact scoring.",
     "gold leak (PII left in cleartext) in g06_org_city: missed [('ORGANIZATION', 25, 36)]",
-    "gold leak (PII left in cleartext) in g07_id_card: missed [('DE_ID_CARD', 35, 44)]",
     "gold leak (PII left in cleartext) in g08_two_persons_org: missed [('PERSON', 25, 39), ('PERSON', 44, 60), ('ORGANIZATION', 76, 87)]",
     "gold over-redaction (span-exact FP, non-clean doc) in g03_iban: [('LOCATION', 'Ueberweisen')]",
     "gold over-redaction (span-exact FP, non-clean doc) in g05_person_url: [('LOCATION', 'Frau')]",

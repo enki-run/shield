@@ -140,13 +140,8 @@ def test_no_ner_false_positives_on_clean_docs(floored):
     assert _row(floored, 0.70)["ner_fp"] == 0
 
 
-@pytest.mark.xfail(
-    reason="KNOWN-OPEN: ORGANIZATION e.V./Ltd. recall + DE_ID_CARD regex gaps. "
-    "The per-type corpus contains 'Musterverein Musterstadt e.V.', 'Mustermann "
-    "Consulting Ltd.' and ID-card 'L01X00T471' which are not fully covered, so "
-    "per-type full-recall < 1.0.",
-    strict=True,
-)
 def test_full_per_type_recall(floored):
+    # ORGANIZATION (fuer-connector + anchoring), IP_ADDRESS (IPv6) and the
+    # interior-letter DE_ID_CARD serials are now covered at the operating point.
     bp = _row(floored, 0.70)
     assert bp["ner_recall"] == 1.0 and bp["struct_recall"] == 1.0
