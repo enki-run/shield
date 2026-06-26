@@ -10,6 +10,6 @@
 {"id": "rt-10-iban-invalid-checksum", "lang": "de", "text": "Auf dem Testbeleg steht die Konto-IBAN DE00123456780000000000, die zu Pruefzwecken verwendet wurde.", "must_disappear": ["DE00123456780000000000"], "known_open": []}
 {"id": "rt-11-org-ev", "lang": "de", "text": "Der Foerderverein Beispiel e.V. veranstaltet am Wochenende ein Sommerfest fuer alle Mitglieder.", "must_disappear": ["Beispiel e.V."], "known_open": []}
 {"id": "rt-12-org-ltd", "lang": "de", "text": "Die Beispiel Trading Ltd. mit Sitz in London hat den Liefervertrag unterzeichnet.", "must_disappear": ["Beispiel Trading Ltd."], "known_open": []}
-{"id": "rt-13-id-card", "lang": "de", "text": "Zur Identifikation legte der Antragsteller den Personalausweis mit der Nummer L01X00T471 vor.", "must_disappear": ["L01X00T471"], "known_open": ["L01X00T471"]}
+{"id": "rt-13-id-card", "lang": "de", "text": "Zur Identifikation legte der Antragsteller den Personalausweis mit der Nummer L01X00T471 vor.", "must_disappear": ["L01X00T471"], "known_open": []}
 {"id": "rt-14-org-suffixless", "lang": "de", "text": "Das Projekt wird gemeinsam mit Mustermann Consulting aus Muenchen umgesetzt.", "must_disappear": ["Mustermann Consulting"], "known_open": ["Mustermann Consulting"]}
 {"id": "rt-15-social-security", "lang": "de", "text": "Die Sozialversicherungsnummer 65 170839 M 003 ist im Personalbogen hinterlegt worden.", "must_disappear": ["65 170839 M 003"], "known_open": []}

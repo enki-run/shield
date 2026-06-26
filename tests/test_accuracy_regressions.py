@@ -162,3 +162,30 @@ def test_ipv6_rule_no_mac_or_scope_false_positive():
     det = PiiDetector(mode="compliant")
     for t in ("MAC 00:1A:2B:3C:4D:5E am Switch.", "Der Operator :: in C++ trennt Namensraeume."):
         assert not [e for e in det.detect(t) if e.entity_type == "IP_ADDRESS"], t
+
+
+@pytest.mark.skipif(not HAS_SPACY, reason=SKIP_MSG)
+def test_de_id_card_interior_letters_detected():
+    """Audit defect: the DE_Personalausweis regex hard-coded 7 digits at pos 3-9,
+    missing real nPA serials with interior letters (L01X00T471)."""
+    from app.pipeline.detector import PiiDetector
+
+    det = PiiDetector(mode="balanced")
+    for txt, serial in (
+        ("Personalausweis-Nummer L01X00T471 vorgelegt.", "L01X00T471"),
+        ("Mein Personalausweis L1234567X8 ist gueltig.", "L1234567X8"),
+        ("Die Ausweisnummer C2345678Y9 wurde geprueft.", "C2345678Y9"),
+    ):
+        ids = [e.text for e in det.detect(txt) if e.entity_type == "DE_ID_CARD"]
+        assert serial in ids, f"{serial} not detected as DE_ID_CARD"
+
+
+@pytest.mark.skipif(not HAS_SPACY, reason=SKIP_MSG)
+def test_de_id_card_context_free_code_not_flagged():
+    """FP guard: a context-free alphanumeric code must stay below the floor and
+    NOT be flagged as DE_ID_CARD (the score-0.35 + context-gate is the safeguard)."""
+    from app.pipeline.detector import PiiDetector
+
+    det = PiiDetector(mode="balanced")
+    ents = det.detect("Die Bestellnummer K123456789 wurde versandt.")
+    assert not [e for e in ents if e.entity_type == "DE_ID_CARD"]

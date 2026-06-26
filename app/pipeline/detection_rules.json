@@ -1,6 +1,6 @@
 {
   "_comment": "Shield PII Detection Rules — edit this file to tune detection without code changes.",
-  "_version": "1.1.0",
+  "_version": "1.2.0",
   "_docs": "Each rule creates a Presidio PatternRecognizer. 'context' words boost confidence when found nearby.",
 
   "rules": [
@@ -133,8 +133,8 @@
       "patterns": [
         {
           "name": "perso_nr",
-          "regex": "\\b[A-Z][A-Z0-9]\\d{7}[A-Z]?\\b",
-          "score": 0.5
+          "regex": "\\b[CFGHJKLMNPRTVWXYZ][CFGHJKLMNPRTVWXYZ0-9]{8}[A-Z0-9]?\\b",
+          "score": 0.35
         }
       ],
       "context": ["personalausweis", "ausweis", "ausweisn", "perso", "identit"]
